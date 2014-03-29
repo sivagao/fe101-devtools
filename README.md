@@ -1,933 +1,166 @@
-# reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.png?branch=master)](https://travis-ci.org/hakimel/reveal.js)
+# FE101 - DevTools
 
-A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
+##CopyRight
+『今天我讲devtools， 一个开发者工具， 应该算是很简单很轻松了。 大家只要熟悉这个工具的信息架构IA, 功能点，完成一些常见任务的流程就行了。 如果遇到不熟悉的点（譬如jQuery的API, 譬如网络HTTP知识）， 后续的课程会有介绍，不用担心。』
 
-reveal.js comes with a broad range of features including [nested slides](https://github.com/hakimel/reveal.js#markup), [markdown contents](https://github.com/hakimel/reveal.js#markdown), [PDF export](https://github.com/hakimel/reveal.js#pdf-export), [speaker notes](https://github.com/hakimel/reveal.js#speaker-notes) and a [JavaScript API](https://github.com/hakimel/reveal.js#api). It's best viewed in a browser with support for CSS 3D transforms but [fallbacks](https://github.com/hakimel/reveal.js/wiki/Browser-Support) are available to make sure your presentation can still be viewed elsewhere.
+在本节课程只做功能展示使用。同时，通过这节课的学习，会把大家前几节课的知识点顺带复习下。 同时这节课的效果是非常明显的 - 譬如修改一些文案啊，改下图标按钮的大小背景色啊，做一些增加工作效率的小插件小脚本啊。 都会很方便和简单。
 
+好了， 在大家听完前面三巨头的讲解的HTML. CSS, JS后， 大家会很好奇自己在编辑器中写的代码， 到最终的浏览器上看到的样子，这中间发生了那些事情，从哪里可以看到当前的状态。
+那么今天通过学习强大的DevTools（Chrome浏览器提供的开发者工具）， 来一探究竟吧。
 
-#### More reading:
-- [Installation](#installation): Step-by-step instructions for getting reveal.js running on your computer.
-- [Changelog](https://github.com/hakimel/reveal.js/releases): Up-to-date version history.
-- [Examples](https://github.com/hakimel/reveal.js/wiki/Example-Presentations): Presentations created with reveal.js, add your own!
-- [Browser Support](https://github.com/hakimel/reveal.js/wiki/Browser-Support): Explanation of browser support and fallbacks.
+为了让大家有个直观的印象，首先来个30秒的小动画，欢乐一下！
+这段的意思大概就是『用elements面板来解决html和css问题，用console和debugger来解决js相关的问题， 用network面板来解决网络相关的问题』 - 等学完了这课，大家再回来看下就更加明晰了。
+好了， 看完视频， 大家对devtools稍微熟悉了。
 
-## Online Editor
+ 在介绍高大上的Devtools之前， 我们也来看看兄弟工具张什么样子（问下大家都装了chrome吧， ）
+（Firefox, 两年前特别火的Firebug, IE(其实新版IE的开发者工具还挺不错的），Opera的。
+大家会发现它们大同小异， 顶部的菜单栏有各种ICON可以切换不同的功能面板， 主体部分分为两块， 左侧一般是全局预览，右侧是选中信息的详情。
 
-Presentations are written using HTML or markdown but there's also an online editor for those of you who prefer a graphical interface. Give it a try at [http://slid.es](http://slid.es).
+我们就是用通过它， 来完成对Elements - (html, style), sources()等方方面面来辅助开发！
+想知道HTML是怎么被解析，结合CSS后怎么被渲染，结合JS后怎么被执行来响应大家的交互和后端来数据通信。
+讲了这么多，大家肯定听的头都大了。 一个工具怎么实现那么多的功能还能保持良好的可用性的呢？
+当前我们这节课的重点是Elements面板（），这个是建议（所有同学都学会），能完成相应的小练习，然后在日常工作是可以灵活运用。
+然后快速的过一下Resource, Network，接着Script和Console，涉及到js简单的脚本编程，通过debugger等快速实现小功能（这章建议，非工程的同学简单了解，知道大致的流程。 建议其他岗的工程师们能对照学习，看看和自己开发上异同。）
 
 
-## Instructions
+好， 我们就直接呼出它，开始今天的课程！如何进入呢？ 大体上有两种方法，
+1 通过快捷键 - 对于的快捷键是cmd+opt+i
+2 通过UI按钮进入（譬如在网页上右键菜单选择审查元素，在chrome的菜单项Tools -> DevTools开发者工具）
 
-### Markup
 
-Markup hierarchy needs to be ``<div class="reveal"> <div class="slides"> <section>`` where the ``<section>`` represents one slide and can be repeated indefinitely. If you place multiple ``<section>``'s inside of another ``<section>`` they will be shown as vertical slides. The first of the vertical slides is the "root" of the others (at the top), and it will be included in the horizontal sequence. For example:
+外围边角
+那么现在出现在我们眼前的就是今天课程的主角，DevTools了。 可以发现，因为版本升级的原因， 截图中的样子和我浏览器中打开的差别乍一看差别很大， 但其是主体功能和UI元素是大致相同的。
+（我们先看一下这Section要学会的知识点： checklist， 读一遍。）
+好我们一个个来完成
+1 关闭打开Devtools, 结合Tips点。
+等等
+最后一个， emulation，看看mobile agent， 我们希望看看我们的网页在移动浏览器上的显示效果， 怎么做呢？ - Chrome提供了Emulation功能（之前是在settings选项中， 因为移动开发的越来越流行被抽取来了） 。 
+(这里非常多的仿真机型可以选择， 我们选， 发现窗口大小已经改变了，然后刷新下看是否在移动端也基本可用， 我们发现鼠标cursor变化了， 代表当前是支持touch事件的， 我们swipeleft，swiperight， 左右拖动， 嗯工作正常。)
+大家试着在新窗口用手机仿真访问下我们豌豆荚的www官网，看看效果吧。 非常不错的体验吧！
 
-```html
-<div class="reveal">
-	<div class="slides">
-		<section>Single Horizontal Slide</section>
-		<section>
-			<section>Vertical Slide 1</section>
-			<section>Vertical Slide 2</section>
-		</section>
-	</div>
-</div>
-```
 
-### Markdown
 
-It's possible to write your slides using Markdown. To enable Markdown, add the ```data-markdown``` attribute to your ```<section>``` elements and wrap the contents in a ```<script type="text/template">``` like the example below.
+  1. 关闭 DevTools
 
-This is based on [data-markdown](https://gist.github.com/1343518) from [Paul Irish](https://github.com/paulirish) modified to use [marked](https://github.com/chjj/marked) to support [Github Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown). Sensitive to indentation (avoid mixing tabs and spaces) and line breaks (avoid consecutive breaks).
+  2. 不同的 Tab 对应不同的功能，通过鼠标切换功能模块
 
-```html
-<section data-markdown>
-	<script type="text/template">
-		## Page title
+  3. 通过第三方插件扩展 DevTools 的功能
 
-		A paragraph with some text and a [link](http://hakim.se).
-	</script>
-</section>
-```
+  4. 改变 DevTools 在页面中的悬停位置
 
-#### External Markdown
+  5. 调出 console 功能
 
-You can write your content as a separate file and have reveal.js load it at runtime. Note the separator arguments which determine how slides are delimited in the external file. The ```data-charset``` attribute is optional and specifies which charset to use when loading the external file.
+  6. 通过「审查元素」快速查找/定位元素 - 在elements面板我们会细讲
+  7. 记录当前页面的错误信息 - 在sources面部我们会接着细讲
+  8. 配置 Settings，实现如修改 UA，模拟手机访问等功能
 
-When used locally, this feature requires that reveal.js [runs from a local web server](#full-setup).
 
-```html
-<section data-markdown="example.md"  
-         data-separator="^\n\n\n"  
-         data-vertical="^\n\n"  
-         data-notes="^Note:"  
-         data-charset="iso-8859-15">
-</section>
-```
 
-#### Element Attributes
 
-Special syntax (in html comment) is available for adding attributes to Markdown elements. This is useful for fragments, amongst other things.
+好看玩了，边边角角的小功能点，我们进入最最重要的Elements Panel的学习。
+先大概介绍下，便于完成接下来的DOM操作和Style样式更新的两个练习。【解释DOM?】
+大体介绍，然后逐点Tip讲解， 好了， 说了这多， 我进入练习，看能不能很好的解决问题。
 
-```html
-<section data-markdown>
-	<script type="text/template">
-		- Item 1 <!-- .element: class="fragment" data-fragment-index="2" -->
-		- Item 2 <!-- .element: class="fragment" data-fragment-index="1" -->
-	</script>
-</section>
-```
+元素（Elements）面板
+DEMO - 废话少说，我们开始demo吧 （这里需要在re下稿子 - ） HTML 与 STYLE 两个
 
-#### Slide Attributes
+（下面的知识点最好结合demo去讲解）
 
-Special syntax (in html comment) is available for adding attributes to the slide `<section>` elements generated by your Markdown.
+在元素（Elements）面板中，可以看到整个页面的 DOM 树结构和每个元素的所有属性，同时也可以实时地修改这些元素及其属性，并可以实时看到修改后的效果。我们这里以 Google 简体中文首页为例，鼠标右键单击“ Google 搜索” 按钮，选择“审查元素”，您会看到如下的窗口界面（注：此处使用的内嵌工具窗口模式，如您的工具窗口为独立窗口模式，可通过点击窗口左下方的“停靠”下、 图标 将其变为内嵌模式）：
+在工具窗口右侧，显示的是被选元素的样式信息，如有兴趣，可以尝试通过双击现有属性来修改该元素的 style 属性或应用的某个选择器中的属性值，也可以通过取消勾选的方式去掉一些属性，同时观察页面的实时变化。那怎样给现有的元素或者选择器增加一个属性值呢？不用着急，鼠标双击您所想修改的元素的 element.style 部分或者它应用的选择器的空白部分（如下图所示），即可添加属性。需要注意的是，添加任何属性都必须以分号结束。
 
-```html
-<section data-markdown>
-	<script type="text/template">
-	<!-- .slide: data-background="#ff0000" -->
-		Mardown content
-	</script>
-</section>
-```
+ 拖动工具窗口最右侧的滚动条，在展开的 Styles 模块下方还有 Metrics、Properties、Event Listeners 几大模块。Metrics 模块以图形方式展示出左侧面板中选中元素的盒模型并标出了各部分的详细数值，在调试页面布局问题时，这样的展示方式往往更直观、更清晰。
 
+ 向上拖动工具窗口中部的滚动条，找到“图片”元素，点击后，可看到在页面上相应的元素被选中，这时我们将工具窗口右侧的滚动条拖到最下方，展开 Event Listeners 中个各项，可看到这个链接（元素）的相关事件监听函数。通过 Event Listeners 项右侧的“齿轮”图标，您可以选择是只显示选中节点上的注册的事件，还是显示整个事件流中所有注册的事件。
 
-### Configuration
+点击工具窗口左下角的放大镜图标 可进入“审查模式”，选中后，放大镜变为蓝色，这时随鼠标在主窗口的页面中的移动，你会看到相应的元素被高亮标识出来，点击后，工具窗口会显示选中元素的 DOM 节点信息。另外值得注意的一点是，在 Google Chrome 浏览器开发人员工具里，所有脚本和样式表是按语法着色的，调试起来更加清晰。
 
-At the end of your page you need to initialize reveal by running the following code. Note that all config values are optional and will default as specified below.
 
-```javascript
-Reveal.initialize({
 
-	// Display controls in the bottom right corner
-	controls: true,
+  1. 展示当前页面中被渲染的元素列表
 
-	// Display a presentation progress bar
-	progress: true,
+  2. 含有箭头的元素表明，该元素含有子元素。当子元素被展开时箭头向下，收起时箭头向右
 
-	// Display the page number of the current slide
-	slideNumber: false,
+  3. 这是一个面包屑，自左而右的包括了选中元素的各级父元素，hover 到对应的节点时在窗口中高亮显示对应的模块
 
-	// Push each slide change to the browser history
-	history: false,
+  4. 将元素列表与样式信息分开的一条竖线，我们可以移动这条竖线。
 
-	// Enable keyboard shortcuts for navigation
-	keyboard: true,
+  5. 展示元素样式与其他信息
 
-	// Enable the slide overview mode
-	overview: true,
+  6. 选中元素的最终样式
 
-	// Vertical centering of slides
-	center: true,
+  7. 展示该元素从浏览器默认叠层样式表中继承而来的样式
 
-	// Enables touch navigation on devices with touch input
-	touch: true,
+  8. 展示用户样式表附加的样式，包括从页面 css 文件、 JavaScript 脚本或 DevTools 中获取的样式
 
-	// Loop the presentation
-	loop: false,
+  9. 展示用户样式表附加的样式，包括从页面 css 文件、 JavaScript 脚本或 DevTools 中获取的样式
 
-	// Change the presentation direction to be RTL
-	rtl: false,
+  10. 模拟用户操作，通过勾选对应的选项可以查看该元素在用户操作行为下的样式，例如选中 hover 时将会将该元素的样式切换为 hover 的状态
 
-	// Turns fragments on and off globally
-	fragments: true,
+  11. 调整图片色值的展示方式，默认状态为 as authored，可以调整为「十六进制」、「红绿蓝」或以「色相、饱和度、明度」等三种格式
 
-	// Flags if the presentation is running in an embedded mode,
-	// i.e. contained within a limited portion of the screen
-	embedded: false,
+  12. 可视化元素的盒模型，清晰的展示元素的 margin、border 和 padding 等属性
 
-	// Number of milliseconds between automatically proceeding to the
-	// next slide, disabled when set to 0, this value can be overwritten
-	// by using a data-autoslide attribute on your slides
-	autoSlide: 0,
 
-	// Stop auto-sliding after user input
-	autoSlideStoppable: true,
+TODO: (挂掉的资源，超大的图片，cookie呀) - 来个demo（先侦察，改链接，等）
 
-	// Enable slide navigation via mouse wheel
-	mouseWheel: false,
 
-	// Hides the address bar on mobile devices
-	hideAddressBar: true,
+看了那多么elements的feature后， 我们接着进入resources面板的学习
+在资源面板中，可以查看到请求的资源情况，包括CSS、JS、图片等内容，同时还可以查看到存储相关的如Cookies、HTML5的Database和LocalStore等，你可以对存储的内容编辑和删除。
+What: The resources panel shows resources associated with the page
 
-	// Opens links in an iframe preview overlay
-	previewLinks: false,
+Why: Viewing the page's resources is essential for debugging. You might also be curious as to what information other websites store in localStorage, cookies, or any other data storage mechanism. Additionally, certain resources, such as localStorage can be modified via the developer tools.
+TODO: 例子（挂掉的handler - addEvent， 发现错误，debugger！）
 
-	// Transition style
-	transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+进入sources面板的学习
+在脚本面板里，您可以方便的调试 JavaScript 代码。下面的图中标注了在脚本面板里的几个主要功能：
+单步调试，不进入函数体内部
+② 单步调试，进入函数体内部
+③ 跳出当前函数
 
-	// Transition speed
-	transitionSpeed: 'default', // default/fast/slow
+设置断点后按 F5 刷新，页面会在执行到断点语句处停下，您可以在右侧添加所需观察的变量，来进行跟踪变量值的变化，也可查看堆栈调用情况及全局变量和函数的信息，也可以将鼠标移到感兴趣的变量名上直接查看此变量当前的值。
 
-	// Transition style for full page slide backgrounds
-	backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
 
-	// Number of slides away from the current that are visible
-	viewDistance: 3,
+  1. The Sources Panel. If you do not see as many scripts as you expect, refresh the page with the Sources panel open.
+  2. 此窗格可以隐藏,auto-hidden或固定。点击小右上角的图标使得在这些状态之间切换。此窗格可以调整大小
 
-	// Parallax background image
-	parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+  3. The Sources tab within the left-hand side pane; you'll likely have this tab open most of the time. The resources it lists are separated by sub-domain, and you can expect to see CSS, JavaScript and HTML within the tab.
+  4. The Content Scripts tab (not active in the screenshot) may at first display many oddly named scripts. These are in fact Chrome extensions that loaded on the page. This is useful for debugging actual extensions. Otherwise, you can avoid seeing them by opening your page in an incognito window; most extensions are disabled by default in incognito mode.
+  5. 主内容窗格中显示选中的脚本的内容。选择多个脚本创建一个选项卡式界面类似于一个IDE。
 
-	// Parallax background size
-	parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+  6. 此窗格包含sub-panels,提供有用的JavaScript调试工具。顶部的面板图标单步调试代码。 - This pane contains sub-panels that provide useful JavaScript debugging utilities. At the top of the pane are the icons to step through your code.
+  7. Watch Expressions does exactly that, it 'watches' expressions you have typed in. If you find yourself wanting to know the value of the this keyword at the various stages of a JavaScript program, you can watch the this keyword to see its different values over time. Click the add button to add an expression, and if an expression doesn't update, hit the small refresh button next to the add button.
+  8. XHR断点时使我们停止正在执行Ajax请求JavaScript代码。通常我们可以通过控制 - 当URL包含的字段中（特定API）的时候, 使得JavaScript中断，以便于我们一步步debug来看看前后端的数据处理。
 
+  9. 事件监听器断点允许您为特定事件设置断点。截图只列出了分类好的顶级类别。如鼠标类别事件下包括：单击，双击，鼠标移入，移出等事件。
+  10. 如果你遇到被压缩的 JavaScript 代码，可以用『Pretty Print』来美化 JavaScript 代码。
 
-});
-```
 
-Note that the new default vertical centering option will break compatibility with slides that were using transitions with backgrounds (`cube` and `page`). To restore the previous behavior, set `center` to `false`.
+TODO: (方便的执行一些snippet， 看效果， 引入jQuery， 看颜色表，完好常规任务的snippet - app 页面添加packagename preview）
 
+Console 面板
 
-The configuration can be updated after initialization using the ```configure``` method:
 
-```javascript
-// Turn autoSlide off
-Reveal.configure({ autoSlide: 0 });
+  1. console.log writes the provided values to the console. There's no need to concatenate values together; console.log supports multiple arguments of different types and writes each of them to the console. When you execute a command, you see the output in the immediately following line.
+  2. You may occasionally see "[native code]" when attempting to view a native function's definition.
+  3. You can write functions and execute them. Be aware that pressing the enter key executes the code you typed into the console instead of inserting a new line. Hold shift+enter to insert a new line.
+  4. An example of an array. Notice the colors are different for different types of values.
+  5. An example of a large array with 303 elements. Notice how the elements are grouped together; this prevents the console from being flooded with large amounts of data.
+  6. $0 is a shortcut to return the currently selected element in theElements panel. Right-clicking on an element in the console gives you an option to view that element in the Elements panel.
+  7. Errors stand out from other console entries thanks to their red color and icon.
+  8. We can access anything in the page's scope, including thewindow object. In the screenshot, I created a newWebKitCSSMatrix object.
+  9. You can also style console entries using CSS.
+  10. The console provides code completion. Try typing in "window." and see the vast amount of properties you can choose from!
 
-// Start auto-sliding every 5s
-Reveal.configure({ autoSlide: 5000 });
-```
 
+TODO: （看数据提交， GET, POST, 看响应， 改动提交数据，preserve log，看ga统计请求等）
 
-### Dependencies
+Network面板
+网络标签页对于分析网站请求的网络情况、查看某一请求的请求头和响应头还有响应内容很有用，特别是在查看Ajax类请求的时候，非常有帮助。
+每个水平的棒状图示代表一个资源占用网络的时间，而在每个棒状图示的左侧颜色较浅的部分代表延迟时间（Latency），即从向服务器发出请求到服务器第一次响应之间的时长。鼠标移至棒状图示上，可看到每个部分所花销的精确时间。图中蓝色和红色的两条垂直线分别代表 DOMContent 加载完成和 Load 事件被触发的时间点。
 
-Reveal.js doesn't _rely_ on any third party scripts to work but a few optional libraries are included by default. These libraries are loaded as dependencies in the order they appear, for example:
+Timeline:
+时间轴面板为您的网页及网络应用程序做了一个详细的性能分析，告诉您载入页面的时间究竟花在哪些地方。从加载资源到解析 JavaScript 脚本、计算样式表及页面渲染的所有步骤，您都可以在这里看到它们消耗的时间和内存。打开时间轴面板，您会看到这样的界面：
 
-```javascript
-Reveal.initialize({
-	dependencies: [
-		// Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
-		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 
-		// Interpret Markdown in <section> elements
-		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-
-		// Syntax highlight for <code> elements
-		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-
-		// Zoom in and out with Alt+click
-		{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-
-		// Speaker notes
-		{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-
-		// Remote control your reveal.js presentation using a touch device
-		{ src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
-
-		// MathJax
-		{ src: 'plugin/math/math.js', async: true }
-	]
-});
-```
-
-You can add your own extensions using the same syntax. The following properties are available for each dependency object:
-- **src**: Path to the script to load
-- **async**: [optional] Flags if the script should load after reveal.js has started, defaults to false
-- **callback**: [optional] Function to execute when the script has loaded
-- **condition**: [optional] Function which must return true for the script to be loaded
-
-
-### Presentation Size
-
-All presentations have a normal size, that is the resolution at which they are authored. The framework will automatically scale presentations uniformly based on this size to ensure that everything fits on any given display or viewport.
-
-See below for a list of configuration options related to sizing, including default values:
-
-```javascript
-Reveal.initialize({
-
-	...
-
-	// The "normal" size of the presentation, aspect ratio will be preserved
-	// when the presentation is scaled to fit different resolutions. Can be
-	// specified using percentage units.
-	width: 960,
-	height: 700,
-
-	// Factor of the display size that should remain empty around the content
-	margin: 0.1,
-
-	// Bounds for smallest/largest possible scale to apply to content
-	minScale: 0.2,
-	maxScale: 1.0
-
-});
-```
-
-
-### Auto-sliding
-
-Presentations can be configure to progress through slides automatically, without any user input. To enable this you will need to tell the framework how many milliseconds it should wait between slides:
-
-```javascript
-// Slide every five seconds
-Reveal.configure({
-  autoSlide: 5000
-});
-```
-
-When this is turned on a control element will appear that enables users to pause and resume auto-sliding. Sliding is also paused automatically as soon as the user starts navigating. You can disable these controls by specifying ```autoSlideStoppable: false``` in your reveal.js config.
-
-You can also override the slide duration for individual slides by using the ```data-autoslide``` attribute on individual sections:
-
-```html
-<section data-autoslide="10000">This will remain on screen for 10 seconds</section>
-```
-
-
-### Keyboard Bindings
-
-If you're unhappy with any of the default keyboard bindings you can override them using the ```keyboard``` config option:
-
-```javascript
-Reveal.configure({
-  keyboard: {
-    13: 'next', // go to the next slide when the ENTER key is pressed
-    27: function() {}, // do something custom when ESC is pressed
-    32: null // don't do anything when SPACE is pressed (i.e. disable a reveal.js default binding)
-  }
-});
-```
-
-
-### API
-
-The ``Reveal`` class provides a JavaScript API for controlling navigation and reading state:
-
-```javascript
-// Navigation
-Reveal.slide( indexh, indexv, indexf );
-Reveal.left();
-Reveal.right();
-Reveal.up();
-Reveal.down();
-Reveal.prev();
-Reveal.next();
-Reveal.prevFragment();
-Reveal.nextFragment();
-Reveal.toggleOverview();
-Reveal.togglePause();
-
-// Retrieves the previous and current slide elements
-Reveal.getPreviousSlide();
-Reveal.getCurrentSlide();
-
-Reveal.getIndices(); // { h: 0, v: 0 } }
-
-// State checks
-Reveal.isFirstSlide();
-Reveal.isLastSlide();
-Reveal.isOverview();
-Reveal.isPaused();
-```
-
-### Ready Event
-
-The 'ready' event is fired when reveal.js has loaded all (synchronous) dependencies and is ready to start navigating.
-
-```javascript
-Reveal.addEventListener( 'ready', function( event ) {
-	// event.currentSlide, event.indexh, event.indexv
-} );
-```
-
-### Slide Changed Event
-
-An 'slidechanged' event is fired each time the slide is changed (regardless of state). The event object holds the index values of the current slide as well as a reference to the previous and current slide HTML nodes.
-
-Some libraries, like MathJax (see [#226](https://github.com/hakimel/reveal.js/issues/226#issuecomment-10261609)), get confused by the transforms and display states of slides. Often times, this can be fixed by calling their update or render function from this callback.
-
-```javascript
-Reveal.addEventListener( 'slidechanged', function( event ) {
-	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-} );
-```
-
-
-### States
-
-If you set ``data-state="somestate"`` on a slide ``<section>``, "somestate" will be applied as a class on the document element when that slide is opened. This allows you to apply broad style changes to the page based on the active slide.
-
-Furthermore you can also listen to these changes in state via JavaScript:
-
-```javascript
-Reveal.addEventListener( 'somestate', function() {
-	// TODO: Sprinkle magic
-}, false );
-```
-
-### Slide Backgrounds
-
-Slides are contained within a limited portion of the screen by default to allow them to fit any display and scale uniformly. You can apply full page background colors or images by applying a ```data-background``` attribute to your ```<section>``` elements. Below are a few examples.
-
-```html
-<section data-background="#ff0000">
-	<h2>All CSS color formats are supported, like rgba() or hsl().</h2>
-</section>
-<section data-background="http://example.com/image.png">
-	<h2>This slide will have a full-size background image.</h2>
-</section>
-<section data-background="http://example.com/image.png" data-background-size="100px" data-background-repeat="repeat">
-	<h2>This background image will be sized to 100px and repeated.</h2>
-</section>
-```
-
-Backgrounds transition using a fade animation by default. This can be changed to a linear sliding transition by passing ```backgroundTransition: 'slide'``` to the ```Reveal.initialize()``` call. Alternatively you can set ```data-background-transition``` on any section with a background to override that specific transition.
-
-
-### Parallax Background
-
-If you want to use a parallax scrolling background, set the two following config properties when initializing reveal.js (the third one is optional).
-
-```javascript
-Reveal.initialize({
-
-	// Parallax background image
-	parallaxBackgroundImage: '', // e.g. "https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg"
-
-	// Parallax background size
-	parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px" - currently only pixels are supported (don't use % or auto)
-
-	// This slide transition gives best results:
-	transition: linear
-
-});
-```
-
-Make sure that the background size is much bigger than screen size to allow for some scrolling. [View example](http://lab.hakim.se/reveal-js/?parallaxBackgroundImage=https%3A%2F%2Fs3.amazonaws.com%2Fhakim-static%2Freveal-js%2Freveal-parallax-1.jpg&parallaxBackgroundSize=2100px%20900px).
-
-
-
-### Slide Transitions
-The global presentation transition is set using the ```transition``` config value. You can override the global transition for a specific slide by using the ```data-transition``` attribute:
-
-```html
-<section data-transition="zoom">
-	<h2>This slide will override the presentation transition and zoom!</h2>
-</section>
-
-<section data-transition-speed="fast">
-	<h2>Choose from three transition speeds: default, fast or slow!</h2>
-</section>
-```
-
-Note that this does not work with the page and cube transitions.
-
-
-### Internal links
-
-It's easy to link between slides. The first example below targets the index of another slide whereas the second targets a slide with an ID attribute (```<section id="some-slide">```):
-
-```html
-<a href="#/2/2">Link</a>
-<a href="#/some-slide">Link</a>
-```
-
-You can also add relative navigation links, similar to the built in reveal.js controls, by appending one of the following classes on any element. Note that each element is automatically given an ```enabled``` class when it's a valid navigation route based on the current slide.
-
-```html
-<a href="#" class="navigate-left">
-<a href="#" class="navigate-right">
-<a href="#" class="navigate-up">
-<a href="#" class="navigate-down">
-<a href="#" class="navigate-prev"> <!-- Previous vertical or horizontal slide -->
-<a href="#" class="navigate-next"> <!-- Next vertical or horizontal slide -->
-```
-
-
-### Fragments
-Fragments are used to highlight individual elements on a slide. Every element with the class ```fragment``` will be stepped through before moving on to the next slide. Here's an example: http://lab.hakim.se/reveal-js/#/fragments
-
-The default fragment style is to start out invisible and fade in. This style can be changed by appending a different class to the fragment:
-
-```html
-<section>
-	<p class="fragment grow">grow</p>
-	<p class="fragment shrink">shrink</p>
-	<p class="fragment roll-in">roll-in</p>
-	<p class="fragment fade-out">fade-out</p>
-	<p class="fragment current-visible">visible only once</p>
-	<p class="fragment highlight-current-blue">blue only once</p>
-	<p class="fragment highlight-red">highlight-red</p>
-	<p class="fragment highlight-green">highlight-green</p>
-	<p class="fragment highlight-blue">highlight-blue</p>
-</section>
-```
-
-Multiple fragments can be applied to the same element sequentially by wrapping it, this will fade in the text on the first step and fade it back out on the second.
-
-```html
-<section>
-	<span class="fragment fade-in">
-		<span class="fragment fade-out">I'll fade in, then out</span>
-	</span>
-</section>
-```
-
-The display order of fragments can be controlled using the ```data-fragment-index``` attribute.
-
-```html
-<section>
-	<p class="fragment" data-fragment-index="3">Appears last</p>
-	<p class="fragment" data-fragment-index="1">Appears first</p>
-	<p class="fragment" data-fragment-index="2">Appears second</p>
-</section>
-```
-
-### Fragment events
-
-When a slide fragment is either shown or hidden reveal.js will dispatch an event.
-
-Some libraries, like MathJax (see #505), get confused by the initially hidden fragment elements. Often times this can be fixed by calling their update or render function from this callback.
-
-```javascript
-Reveal.addEventListener( 'fragmentshown', function( event ) {
-	// event.fragment = the fragment DOM element
-} );
-Reveal.addEventListener( 'fragmenthidden', function( event ) {
-	// event.fragment = the fragment DOM element
-} );
-```
-
-### Code syntax highlighting
-
-By default, Reveal is configured with [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for code syntax highlighting. Below is an example with clojure code that will be syntax highlighted. When the `data-trim` attribute is present surrounding whitespace is automatically removed.
-
-```html
-<section>
-	<pre><code data-trim>
-(def lazy-fib
-  (concat
-   [0 1]
-   ((fn rfib [a b]
-        (lazy-cons (+ a b) (rfib b (+ a b)))) 0 1)))
-	</code></pre>
-</section>
-```
-
-### Slide number
-If you would like to display the page number of the current slide you can do so using the ```slideNumber``` configuration value.
-
-```javascript
-Reveal.configure({ slideNumber: true });
-```
-
-
-### Overview mode
-
-Press "Esc" or "o" keys to toggle the overview mode on and off. While you're in this mode, you can still navigate between slides,
-as if you were at 1,000 feet above your presentation. The overview mode comes with a few API hooks:
-
-```javascript
-Reveal.addEventListener( 'overviewshown', function( event ) { /* ... */ } );
-Reveal.addEventListener( 'overviewhidden', function( event ) { /* ... */ } );
-
-// Toggle the overview mode programmatically
-Reveal.toggleOverview();
-```
-
-### Fullscreen mode
-Just press »F« on your keyboard to show your presentation in fullscreen mode. Press the »ESC« key to exit fullscreen mode.
-
-
-### Embedded media
-Embedded HTML5 `<video>`/`<audio>` and YouTube iframes are automatically paused when you navigate away from a slide. This can be disabled by decorating your element with a `data-ignore` attribute.
-
-Add `data-autoplay` to your media element if you want it to automatically start playing when the slide is shown:
-
-```html
-<video data-autoplay src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
-```
-
-Additionally the framework automatically pushes two [post messages](https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage) to all iframes, ```slide:start``` when the slide containing the iframe is made visible and ```slide:stop``` when it is hidden.
-
-
-### Stretching elements
-Sometimes it's desirable to have an element, like an image or video, stretch to consume as much space as possible within a given slide. This can be done by adding the ```.stretch``` class to an element as seen below:
-
-```html
-<section>
-	<h2>This video will use up the remaining space on the slide</h2>
-    <video class="stretch" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
-</section>
-```
-
-Limitations:
-- Only direct descendants of a slide section can be stretched
-- Only one descendant per slide section can be stretched
-
-
-## PDF Export
-
-Presentations can be exported to PDF via a special print stylesheet. This feature requires that you use [Google Chrome](http://google.com/chrome).
-Here's an example of an exported presentation that's been uploaded to SlideShare: http://www.slideshare.net/hakimel/revealjs-13872948.
-
-1. Open your presentation with [css/print/pdf.css](https://github.com/hakimel/reveal.js/blob/master/css/print/pdf.css) included on the page. The default index HTML lets you add *print-pdf* anywhere in the query to include the stylesheet, for example: [lab.hakim.se/reveal-js?print-pdf](http://lab.hakim.se/reveal-js?print-pdf).
-2. Open the in-browser print dialog (CMD+P).
-3. Change the **Destination** setting to **Save as PDF**.
-4. Change the **Layout** to **Landscape**.
-5. Change the **Margins** to **None**.
-6. Click **Save**.
-
-![Chrome Print Settings](https://s3.amazonaws.com/hakim-static/reveal-js/pdf-print-settings.png)
-
-## Theming
-
-The framework comes with a few different themes included:
-
-- default: Gray background, white text, blue links
-- beige: Beige background, dark text, brown links
-- sky: Blue background, thin white text, blue links
-- night: Black background, thick white text, orange links
-- serif: Cappuccino background, gray text, brown links
-- simple: White background, black text, blue links
-- solarized: Cream-colored background, dark green text, blue links
-
-Each theme is available as a separate stylesheet. To change theme you will need to replace **default** below with your desired theme name in index.html:
-
-```html
-<link rel="stylesheet" href="css/theme/default.css" id="theme">
-```
-
-If you want to add a theme of your own see the instructions here: [/css/theme/README.md](https://github.com/hakimel/reveal.js/blob/master/css/theme/README.md).
-
-
-## Speaker Notes
-
-reveal.js comes with a speaker notes plugin which can be used to present per-slide notes in a separate browser window. The notes window also gives you a preview of the next upcoming slide so it may be helpful even if you haven't written any notes. Press the 's' key on your keyboard to open the notes window.
-
-Notes are defined by appending an ```<aside>``` element to a slide as seen below. You can add the ```data-markdown``` attribute to the aside element if you prefer writing notes using Markdown.
-
-When used locally, this feature requires that reveal.js [runs from a local web server](#full-setup).
-
-```html
-<section>
-	<h2>Some Slide</h2>
-
-	<aside class="notes">
-		Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-	</aside>
-</section>
-```
-
-If you're using the external Markdown plugin, you can add notes with the help of a special delimiter:
-
-```html
-<section data-markdown="example.md" data-separator="^\n\n\n" data-vertical="^\n\n" data-notes="^Note:"></section>
-
-# Title
-## Sub-title
-
-Here is some content...
-
-Note:
-This will only display in the notes window.
-```
-
-## Server Side Speaker Notes
-
-In some cases it can be desirable to run notes on a separate device from the one you're presenting on. The Node.js-based notes plugin lets you do this using the same note definitions as its client side counterpart. Include the required scripts by adding the following dependencies:
-
-```javascript
-Reveal.initialize({
-	...
-
-	dependencies: [
-		{ src: 'socket.io/socket.io.js', async: true },
-		{ src: 'plugin/notes-server/client.js', async: true }
-	]
-});
-```
-
-Then:
-
-1. Install [Node.js](http://nodejs.org/)
-2. Run ```npm install```
-3. Run ```node plugin/notes-server```
-
-
-## Multiplexing
-
-The multiplex plugin allows your audience to view the slides of the presentation you are controlling on their own phone, tablet or laptop. As the master presentation navigates the slides, all client presentations will update in real time. See a demo at [http://revealjs.jit.su/](http://revealjs.jit.su).
-
-The multiplex plugin needs the following 3 things to operate:
-
-1. Master presentation that has control
-2. Client presentations that follow the master
-3. Socket.io server to broadcast events from the master to the clients
-
-More details:
-
-#### Master presentation
-Served from a static file server accessible (preferably) only to the presenter. This need only be on your (the presenter's) computer. (It's safer to run the master presentation from your own computer, so if the venue's Internet goes down it doesn't stop the show.) An example would be to execute the following commands in the directory of your master presentation: 
-
-1. ```npm install node-static```
-2. ```static```
-
-If you want to use the speaker notes plugin with your master presentation then make sure you have the speaker notes plugin configured correctly along with the configuration shown below, then execute ```node plugin/notes-server``` in the directory of your master presentation. The configuration below will cause it to connect to the socket.io server as a master, as well as launch your speaker-notes/static-file server.
-
-You can then access your master presentation at ```http://localhost:1947```
-
-Example configuration:
-```javascript
-Reveal.initialize({
-	// other options...
-
-	multiplex: {
-		// Example values. To generate your own, see the socket.io server instructions.
-		secret: '13652805320794272084', // Obtained from the socket.io server. Gives this (the master) control of the presentation
-		id: '1ea875674b17ca76', // Obtained from socket.io server
-		url: 'revealjs.jit.su:80' // Location of socket.io server
-	},
-
-	// Don't forget to add the dependencies
-	dependencies: [
-		{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
-		{ src: 'plugin/multiplex/master.js', async: true },
-
-		// and if you want speaker notes
-		{ src: 'plugin/notes-server/client.js', async: true }
-
-		// other dependencies...
-	]
-});
-```
-
-#### Client presentation
-Served from a publicly accessible static file server. Examples include: GitHub Pages, Amazon S3, Dreamhost, Akamai, etc. The more reliable, the better. Your audience can then access the client presentation via ```http://example.com/path/to/presentation/client/index.html```, with the configuration below causing them to connect to the socket.io server as clients.
-
-Example configuration:
-```javascript
-Reveal.initialize({
-	// other options...
-
-	multiplex: {
-		// Example values. To generate your own, see the socket.io server instructions.
-		secret: null, // null so the clients do not have control of the master presentation
-		id: '1ea875674b17ca76', // id, obtained from socket.io server
-		url: 'revealjs.jit.su:80' // Location of socket.io server
-	},
-
-	// Don't forget to add the dependencies
-	dependencies: [
-		{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
-		{ src: 'plugin/multiplex/client.js', async: true }
-
-		// other dependencies...
-	]
-});
-```
-
-#### Socket.io server
-Server that receives the slideChanged events from the master presentation and broadcasts them out to the connected client presentations. This needs to be publicly accessible. You can run your own socket.io server with the commands:
-
-1. ```npm install```
-2. ```node plugin/multiplex```
-
-Or you use the socket.io server at [http://revealjs.jit.su](http://revealjs.jit.su).
-
-You'll need to generate a unique secret and token pair for your master and client presentations. To do so, visit ```http://example.com/token```, where ```http://example.com``` is the location of your socket.io server. Or if you're going to use the socket.io server at [http://revealjs.jit.su](http://revealjs.jit.su), visit [http://revealjs.jit.su/token](http://revealjs.jit.su/token).
-
-You are very welcome to point your presentations at the Socket.io server running at [http://revealjs.jit.su](http://revealjs.jit.su), but availability and stability are not guaranteed. For anything mission critical I recommend you run your own server. It is simple to deploy to nodejitsu, heroku, your own environment, etc.
-
-##### socket.io server as file static server
-
-The socket.io server can play the role of static file server for your client presentation, as in the example at [http://revealjs.jit.su](http://revealjs.jit.su). (Open [http://revealjs.jit.su](http://revealjs.jit.su) in two browsers. Navigate through the slides on one, and the other will update to match.) 
-
-Example configuration:
-```javascript
-Reveal.initialize({
-	// other options...
-
-	multiplex: {
-		// Example values. To generate your own, see the socket.io server instructions.
-		secret: null, // null so the clients do not have control of the master presentation
-		id: '1ea875674b17ca76', // id, obtained from socket.io server
-		url: 'example.com:80' // Location of your socket.io server
-	},
-
-	// Don't forget to add the dependencies
-	dependencies: [
-		{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
-		{ src: 'plugin/multiplex/client.js', async: true }
-
-		// other dependencies...
-	]
-```
-
-It can also play the role of static file server for your master presentation and client presentations at the same time (as long as you don't want to use speaker notes). (Open [http://revealjs.jit.su](http://revealjs.jit.su) in two browsers. Navigate through the slides on one, and the other will update to match. Navigate through the slides on the second, and the first will update to match.) This is probably not desirable, because you don't want your audience to mess with your slides while you're presenting. ;)
-
-Example configuration:
-```javascript
-Reveal.initialize({
-	// other options...
-
-	multiplex: {
-		// Example values. To generate your own, see the socket.io server instructions.
-		secret: '13652805320794272084', // Obtained from the socket.io server. Gives this (the master) control of the presentation
-		id: '1ea875674b17ca76', // Obtained from socket.io server
-		url: 'example.com:80' // Location of your socket.io server
-	},
-
-	// Don't forget to add the dependencies
-	dependencies: [
-		{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
-		{ src: 'plugin/multiplex/master.js', async: true },
-		{ src: 'plugin/multiplex/client.js', async: true }
-
-		// other dependencies...
-	]
-});
-```
-
-## Leap Motion
-The Leap Motion plugin lets you utilize your [Leap Motion](https://www.leapmotion.com/) device to control basic navigation of your presentation. The gestures currently supported are:
-
-##### 1 to 2 fingers
-Pointer &mdash; Point to anything on screen. Move your finger past the device to expand the pointer.
-
-##### 1 hand + 3 or more fingers (left/right/up/down)
-Navigate through your slides. See config options to invert movements.
-
-##### 2 hands upwards
-Toggle the overview mode. Do it a second time to exit the overview.
-
-#### Config Options
-You can edit the following options:
-
-| Property          | Default           | Description
-| ----------------- |:-----------------:| :-------------
-| autoCenter        | true              | Center the pointer based on where you put your finger into the leap motions detection field.
-| gestureDelay      | 500               | How long to delay between gestures in milliseconds.
-| naturalSwipe      | true              | Swipe as though you were touching a touch screen. Set to false to invert.
-| pointerColor      | #00aaff           | The color of the pointer.
-| pointerOpacity    | 0.7               | The opacity of the pointer.
-| pointerSize       | 15                | The minimum height and width of the pointer.
-| pointerTolerance  | 120               | Bigger = slower pointer.
-
-
-Example configuration:
-```js
-Reveal.initialize({
-
-	// other options...
-
-	leap: {
-		naturalSwipe   : false,    // Invert swipe gestures
-		pointerOpacity : 0.5,      // Set pointer opacity to 0.5
-		pointerColor   : '#d80000' // Red pointer
-	},
-
-	dependencies: [
-		{ src: 'plugin/leap/leap.js', async: true }
-	]
-
-});
-```
-
-## MathJax
-
-If you want to display math equations in your presentation you can easily do so by including this plugin. The plugin is a very thin wrapper around the [MathJax](http://www.mathjax.org/) library. To use it you'll need to include it as a reveal.js dependency, [find our more about dependencies here](#dependencies).
-
-The plugin defaults to using [LaTeX](http://en.wikipedia.org/wiki/LaTeX) but that can be adjusted through the ```math``` configuration object. Note that MathJax is loaded from a remote server. If you want to use it offline you'll need to download a copy of the library and adjust the ```mathjax``` configuration value. 
-
-Below is an example of how the plugin can be configured. If you don't intend to change these values you do not need to include the ```math``` config object at all.
-
-```js
-Reveal.initialize({
-
-	// other options ...
-
-	math: {
-		mathjax: 'http://cdn.mathjax.org/mathjax/latest/MathJax.js',
-		config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-	},
-	
-	dependencies: [
-		{ src: 'plugin/math/math.js', async: true }
-	]
-
-});
-```
-
-Read MathJax's documentation if you need [HTTPS delivery](http://docs.mathjax.org/en/latest/start.html#secure-access-to-the-cdn) or serving of [specific versions](http://docs.mathjax.org/en/latest/configuration.html#loading-mathjax-from-the-cdn) for stability.
-
-
-## Installation
-
-The **basic setup** is for authoring presentations only. The **full setup** gives you access to all reveal.js features and plugins such as speaker notes as well as the development tasks needed to make changes to the source.
-
-### Basic setup
-
-The core of reveal.js is very easy to install. You'll simply need to download a copy of this repository and open the index.html file directly in your browser.
-
-1. Download the latest version of reveal.js from <https://github.com/hakimel/reveal.js/releases>
-
-2. Unzip and replace the example contents in index.html with your own
-
-3. Open index.html in a browser to view it
-
-
-### Full setup
-
-Some reveal.js features, like external markdown and speaker notes, require that presentations run from a local web server. The following instructions will set up such a server as well as all of the development tasks needed to make edits to the reveal.js source code.
-
-1. Install [Node.js](http://nodejs.org/)
-
-2. Install [Grunt](http://gruntjs.com/getting-started#installing-the-cli)
-
-4. Clone the reveal.js repository
-```sh
-$ git clone https://github.com/hakimel/reveal.js.git
-```
-
-5. Navigate to the reveal.js folder
-```sh
-$ cd reveal.js
-```
-
-6. Install dependencies
-```sh
-$ npm install
-```
-
-7. Serve the presentation and monitor source files for changes
-```sh
-$ grunt serve
-```
-
-8. Open <http://localhost:8000> to view your presentation
-
-You can change the port by using `grunt serve --port 8001`.
-
-
-### Folder Structure
-- **css/** Core styles without which the project does not function
-- **js/** Like above but for JavaScript
-- **plugin/** Components that have been developed as extensions to reveal.js
-- **lib/** All other third party assets (JavaScript, CSS, fonts)
-
-
-### Contributing
-
-Please keep the [issue tracker](http://github.com/hakimel/reveal.js/issues) limited to **bug reports**, **feature requests** and **pull requests**. If you are reporting a bug make sure to include information about which browser and operating system you are using as well as the necessary steps to reproduce the issue.
-
-If you have personal support questions use [StackOverflow](http://stackoverflow.com/questions/tagged/reveal.js).
-
-
-#### Pull requests
-
-- Should follow the coding style of the file you work in, most importantly:
-  - Tabs to indent
-  - Single-quoted strings
-- Should be made towards the **dev branch**
-- Should be submitted from a feature/topic branch (not your master)
-- Should not include the minified **reveal.min.js** file
-
-
-## License
-
-MIT licensed
-
-Copyright (C) 2013 Hakim El Hattab, http://hakim.se
+『今天的课程，大家可以跟着我做出效果来， 但是可能会对背后的知识点不是很了解， 没关系的。 到后续的课程中， 会一步步的有介绍的， 同时， 今天的devtools知识一定会在日后帮助大家不少忙的』
