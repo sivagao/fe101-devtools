@@ -1,0 +1,467 @@
+
+    @font-face {
+    font-family: "OpenSansLight";
+    src: url(OpenSans-Light-webfont.eot);
+    src: url(OpenSans-Light-webfont.eot?#iefix) format("embedded-opentype"), url(OpenSans-Light-webfont.woff) format("woff"), url(OpenSans-Light-webfont.ttf) format("truetype"), url(OpenSans-Light-webfont.svg#OpenSansLight) format("svg");
+    font-weight: normal;
+    font-style: normal;
+    }
+    @font-face {
+    font-family: "OpenSansRegular";
+    src: url(OpenSans-Regular-webfont.eot);
+    src: url(OpenSans-Regular-webfont.eot?#iefix) format("embedded-opentype"), url(OpenSans-Regular-webfont.woff) format("woff"), url(OpenSans-Regular-webfont.ttf) format("truetype"), url(OpenSans-Regular-webfont.svg#OpenSansRegular) format("svg");
+    font-weight: normal;
+    font-style: normal;
+    }
+    @font-face {
+    font-family: "OpenSansRegular";
+    src: url(OpenSans-Bold-webfont.eot);
+    src: url(OpenSans-Bold-webfont.eot?#iefix) format("embedded-opentype"), url(OpenSans-Bold-webfont.woff) format("woff"), url(OpenSans-Bold-webfont.ttf) format("truetype"), url(OpenSans-Bold-webfont.svg#OpenSansBold) format("svg");
+    font-weight: bold;
+    font-style: normal;
+    }
+
+    .events .event .show-map {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    }
+    .events .event .show-map:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+    }
+
+    #wdj-exercise-slides .wdj-exercise {
+    font-size: 12px;
+    }
+    #wdj-exercise-slides .wdj-exercise {
+    color: #313131;
+    margin: 0 auto;
+    min-width: 768px;
+    -webkit-font-smoothing: antialiased;
+    }
+
+    #calendar {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: none;
+    background: white;
+    border: 1px solid #dedede;
+    font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
+    margin: 20px 40px 10px;
+    padding: 15px 15px 35px 15px;
+    position: static;
+    z-index: 1;
+    }
+    @media screen and (min-width: 1000px) {
+    #calendar {
+    margin: 0;
+    position: absolute;
+    right: 80px;
+    top: 95px;
+    width: 38%;
+    }
+    }
+
+    iframe {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0;
+    }
+    @media screen and (min-width: 1000px) {
+    iframe {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    }
+    }
+
+    #wdj-exercise-slides .wdj-exercise header {
+    position: relative;
+    text-align: center;
+    }
+    #wdj-exercise-slides .wdj-exercise header .date {
+    color: #bebebe;
+    font-family: "OpenSansLight", Helvetica, Arial, sans-serif;
+    font-size: 1.2em;
+    letter-spacing: -0.1em;
+    line-height: 1.6em;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: none;
+    }
+    #wdj-exercise-slides .wdj-exercise header .date b {
+    display: block;
+    font: bold 3.2em/0.8em "OpenSansRegular", Helvetica, Arial, sans-serif;
+    letter-spacing: 0;
+    }
+    #wdj-exercise-slides .wdj-exercise header .date .today {
+    color: #459be7;
+    }
+    #wdj-exercise-slides .wdj-exercise header a {
+    border-bottom: 1px solid #edb330;
+    color: #777777;
+    font-size: 1.6em;
+    padding-bottom: 2px;
+    position: absolute;
+    text-decoration: none;
+    top: 10px;
+    }
+    #wdj-exercise-slides .wdj-exercise header a:hover {
+    color: #edb330;
+    }
+    #wdj-exercise-slides .wdj-exercise header a.prev {
+    left: 0;
+    }
+    #wdj-exercise-slides .wdj-exercise header a.next {
+    right: 0;
+    }
+
+    #wdj-exercise-slides .wdj-exercise h1 img {
+    margin-right: 10px;
+    position: relative;
+    top: 5px;
+    width: 35px;
+    height: 35px;
+    }
+
+    #wdj-exercise-slides .wdj-exercise .events {
+    padding-left: 0;
+    display: block;
+    text-align: center;
+    }
+    #wdj-exercise-slides .wdj-exercise .events .event {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    box-shadow: 0 3px 0 #edb330;
+    color: #777777;
+    font-size: 1.6em;
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 10px 15px;
+    position: relative;
+    }
+    #wdj-exercise-slides .wdj-exercise .events .event:last-child {
+    margin-bottom: 0;
+    }
+    #wdj-exercise-slides .wdj-exercise .events .event iframe {
+    width: 100%;
+    }
+    #wdj-exercise-slides .wdj-exercise .events .event .show-map {
+    background: url(icon-map.png) 0 0 no-repeat;
+    display: inline-block;
+    height: 20px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 12px;
+    }
+
+    #wdj-exercise-slides .wdj-exercise .new {
+    margin-top: 20px;
+    }
+    #wdj-exercise-slides .wdj-exercise .new,
+    #wdj-exercise-slides .wdj-exercise .create input[type="submit"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #edb330;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font: bold 1.6em "OpenSansRegular", Helvetica, Arial, sans-serif;
+    padding: 11px 20px 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    }
+    #wdj-exercise-slides .wdj-exercise .new:hover,
+    #wdj-exercise-slides .wdj-exercise .create input[type="submit"]:hover {
+    text-decoration: underline;
+    }
+    #wdj-exercise-slides .wdj-exercise .create input[type="text"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: white;
+    border: 1px solid #dedede;
+    font: 1.6em "OpenSansRegular", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    width: 100%;
+    }
+    #wdj-exercise-slides .wdj-exercise .create input[type="text"]:focus {
+    outline: none;
+    }
+    #wdj-exercise-slides .wdj-exercise .create input[type="submit"] {
+    border-left: 2px solid #dedede;
+    display: block;
+    position: absolute;
+    right: 1px;
+    top: 0;
+    width: 160px;
+    }
+    #wdj-exercise-slides .wdj-exercise .create {
+    margin-top: 20px;
+    overflow: auto;
+    position: relative;
+    }
+
+    .exercises {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 40px 24px 10px 40px;
+    }
+
+    .level-video .exercises {
+      padding-right: 0;
+    }
+
+    .level-challenge .exercises {
+      margin: 0;
+      width: 100%;
+    }
+    @media screen and (min-width: 1000px) {
+
+      .level-challenge .exercises {
+        width: 50%;
+        float: left;
+      }
+    }
+
+    .level-challenge .exercises h2 {
+      display: inline-block;
+      line-height: 1.1;
+      margin-top: 5px;
+      width: 95%;
+      font-family: "OpenSansLight", Helvetica, Arial, sans-serif;
+      font-size: 3.5em;
+      margin: 40px 0 20px;
+    }
+
+
+    .exercise {
+      position: relative;
+    }
+
+    .exercise .challenge-objective .instructions p {
+      color: #bebebe;
+      font-size: 2em;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .exercise .challenge-objective .instructions p .icn {
+      background: url(icn-next.png) 0 0 no-repeat;
+      display: block;
+      height: 11px;
+      left: 0;
+      margin-right: 10px;
+      position: absolute;
+      top: 7px;
+      width: 21px;
+    }
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+
+      .exercise .challenge-objective .instructions p .icn {
+        background-image: url(icn-next.png);
+        background-size: 21px 11px;
+      }
+    }
+
+    .exercise .challenge-objective .instructions p .clear-waterfall {
+      border: 1px solid gray;
+      position: relative;
+      top: 3px;
+    }
+
+    .exercise .challenge-objective .instructions p .clear-map-icon {
+      position: relative;
+      top: 3px;
+    }
+
+    .exercise .challenge-objective .instructions p code {
+      background: white;
+      border: 1px solid #dedede;
+      border-radius: 1px;
+      color: #bebebe;
+      font-family: Monaco, Courier, monospace;
+      font-size: 0.8em;
+      padding: 0 2px;
+    }
+
+    .exercise.activity-domChallenge .next {
+      opacity: 0;
+      -webkit-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+      visibility: hidden;
+    }
+
+    .exercise.activity-domChallenge.is-complete .next {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .exercise.is-hidden {
+      display: none;
+    }
+
+    .exercise.is-complete .challenge-objective .instructions p {
+      color: #499a26;
+      -webkit-transition: color 0.5s 0.5s ease-in-out;
+      transition: color 0.5s 0.5s ease-in-out;
+    }
+
+    .exercise.is-complete .challenge-objective .instructions p .icn {
+      -webkit-animation: bounceInDown 0.8s 0.2s ease both;
+      -moz-animation: bounceInDown 0.8s 0.2s ease both;
+      -ms-animation: bounceInDown 0.8s 0.2s ease both;
+      -o-animation: bounceInDown 0.8s 0.2s ease both;
+      animation: bounceInDown 0.8s 0.2s ease both;
+      background-image: url(icn-success.png);
+      height: 17px;
+      top: 2px;
+      width: 20px;
+    }
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+
+      .exercise.is-complete .challenge-objective .instructions p .icn {
+        background-image: url(icn-success@2x.png);
+        background-size: 20px 17px;
+      }
+    }
+
+    .exercise.is-complete .challenge-objective .instructions p code {
+      color: #499a26;
+      -webkit-transition: color 0.5s 0.5s ease-in-out;
+      transition: color 0.5s 0.5s ease-in-out;
+    }
+
+    .exercise.is-active .challenge-objective .instructions p {
+      color: #459be7;
+      font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .exercise.is-active .challenge-objective .instructions p .icn {
+      background-image: url(icn-challenge.png);
+      height: 16px;
+      top: 4px;
+      width: 20px;
+    }
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+
+      .exercise.is-active .challenge-objective .instructions p .icn {
+        background-image: url(icn-challenge@2x.png);
+        background-size: 20px 16px;
+      }
+    }
+
+    .exercise.is-active .challenge-objective .instructions p code {
+      color: #459be7;
+    }
+
+
+    .instructions-header {
+      color: #777777;
+      font-size: 2.2em;
+      margin-top: 40px;
+    }
+
+
+    .instructions-num {
+      border-right: 1px solid #f2f2f2;
+      font-weight: bold;
+      margin-right: 10px;
+      padding-right: 10px;
+    }
+
+
+    .btn {
+      background: #459be7;
+      color: white;
+      display: block;
+      font: bold 2.4em "OpenSansRegular", Helvetica, Arial, sans-serif;
+      margin: 20px auto;
+      padding: 12px 24px;
+    }
+
+    .btn:hover {
+      background: #1c82dd;
+      text-decoration: none;
+    }
+
+    .level-video .next, .level-video .btn {
+      float: left;
+      margin-bottom: 0;
+      margin-right: 2%;
+      text-align: center;
+      width: 70%;
+    }
+    @media screen and (min-width: 1015px) {
+
+      .level-video .next, .level-video .btn {
+        margin-right: 1%;
+        width: 74%;
+      }
+    }
+
+
+    .exercises .toggle-play-video {
+      background: url(icn-video-5448b280ca5c1b2f9de659d703a31920.png) 0 2px no-repeat;
+      color: #777777;
+      font: bold 0.4em "OpenSansRegular", Helvetica, Arial, sans-serif;
+      margin-left: 20px;
+      padding: 0 0 2px 30px;
+      position: relative;
+      top: -2px;
+    }
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+
+      .exercises .toggle-play-video {
+        background-image: url(icn-video@2x-d721d3ae7290eb6d514df1e6f36d2fe5.png);
+        background-size: 20px 16px;
+      }
+    }
+
+    .exercises .toggle-play-video:hover {
+      color: #459be7;
+    }
+
+
+    .exercise.activity-domChallenge .next {
+      opacity: 0;
+      -webkit-transition: opacity 0.2s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
+      visibility: hidden;
+    }
+
+    .exercise.activity-domChallenge.is-complete .next {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #exercises .next {
+      background: #459be7;
+      color: white;
+      display: block;
+      font: bold 2.4em "OpenSansRegular", Helvetica, Arial, sans-serif;
+      margin: 20px auto;
+      padding: 12px 24px;
+    }
+
+    #exercises .next:hover {
+      background: #1c82dd;
+      text-decoration: none;
+    }

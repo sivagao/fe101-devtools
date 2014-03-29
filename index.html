@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>FE101 - DevTools by SivaGao</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6{
+        text-transform: none;
+      }
+    </style>
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="assets/exercise.css">
+    <style type="text/css">
+    .theme-color-grey-blue {
+        background: #555a5f;
+        background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
+        background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+        background-color: #2b2b2b;
+    }
+
+    .theme-color-grey-blue body {
+        background: transparent;
+    }
+    </style>
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+    <script type="text/javascript" src="assets/jquery.js"></script>
+    <script type="text/javascript" src="assets/jquery-ui.js"></script>
+    <script type="text/javascript" src="assets/jquery.waterfall.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="theme-font-palatino theme-color-grey-blue">
+
+		<div class="reveal">
+
+			<div class="slides" id="wdj-exercise-slides">
+                <!-- Cover -->
+                <section>
+                    <h1>FE 101: DevTools</h1>
+                    <h3>Chrome Developer Tools</h3>
+                    <p>
+                        <small>by <a target="_blank" href="http://weibo.com/1siva">@siva海浪高</a></small>
+                    </p>
+                    <p style="margin: 120px 0;font-size: 55px;">
+                        「工欲善其事，必先利其器」
+                    </p>
+                </section>
+
+                <!-- intro animation video -->
+                <section>
+                    <h2>Video</h2>
+                    <br>
+                    <video src="assets/codeschool.mov#t=,00:00:27" controls style="width: 876px; height: 438px; max-height: none; max-width: none;"></video>
+                </section>
+
+                <!-- other browser -->
+                <section>
+                    <section>
+                        <h2>Other Browser's Tools</h2>
+                        <div><br></div>
+                        <div><br></div>
+                        <p>Before digging into Chrome's developer tools,&nbsp;</p>
+                        <p>just a brief look at the development tools</p>
+                        <p>provided by the major browsers.</p>
+                    </section>
+                    <section>
+                        <h2>Firefox</h2>
+                        <p>
+                            <img src="/assets/material/ff-dev-tools-screenshot.jpg" alt="Firefox">
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Firebug</h2>
+                        <p>
+                            <img src="/assets/material/firebug-screenshot.jpg" alt="firebug">
+                        </p>
+                    </section>
+                    <section>
+                        <h2>IE</h2>
+                        <p>
+                            <img src="/assets/material/ie-dev-tools-ss.jpg" alt="">
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Opera Dragonfly</h2>
+                        <p>
+                            <img src="/assets/material/opera-dragonfly-screenshot.jpg" alt="">
+                        </p>
+                    </section>
+                </section>
+
+                <!-- course summary -->
+                <section>
+                    <h2>Course Summary</h2>
+                    <img src="assets/course-summary.png" alt="">
+                </section>
+
+                <!-- overview for devtools -->
+                <section>
+                    <h2>Overview</h2>
+                    <p>let's take some time to understand the little controls near the top and bottom.</p>
+                    <img src="/assets/material/dev-tools-diagram-overview.jpg" alt="">
+                </section>
+
+                <!-- element panel -->
+                <section>
+                    <section>
+                        <h2>Elements Panel</h2>
+                        <p>List the page's markup as it is rendered in the browser.</p>
+                        <img src="/assets/material/elements-panel-diagram.jpg" alt="">
+                    </section>
+                    <section class="wdj-exercise wdj-exercise-dom">
+                        <div class="level-challenge">
+                            <div class="course" id="course" style="display: block;">
+                                <ol id="exercises" class="exercises" style="list-style-type: none">
+                                    <li style="list-style: none; display: inline">
+                                        <h2>Dom Manipulation</h2>
+                                    </li>
+                                    <li class="exercise activity-domChallenge is-active" id="exercise-13">
+                                        <div class="details">
+                                            <a name="#1-3"></a>
+                                            <div class="challenge-objective">
+                                                <div class="instructions">
+                                                    <p>
+                                                        将日历中日期左侧的 Yesterday 文字变为 Prev，同样的将日期右侧的 Tomorrow 文字变为 Next
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="success_message"></div>
+                                        </div>
+                                        <div class="challenge activity"></div>
+                                    </li>
+                                    <li class="exercise activity-domChallenge" id="exercise-14">
+                                        <div class="details">
+                                            <a name="#1-4"></a>
+                                            <div class="challenge-objective">
+                                                <div class="instructions">
+                                                    <p>
+                                                        将 Run 5k 这个区块移动到整个队列中的首位
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="success_message"></div>
+                                        </div>
+                                        <div class="challenge activity"></div>
+                                    </li>
+                                    <li class="exercise activity-domChallenge" id="exercise-15">
+                                        <div class="details">
+                                            <a name="#1-5"></a>
+                                            <div class="challenge-objective">
+                                                <div class="instructions">
+                                                    <p>
+                                                        给日期对应的 &lt;h1&gt; 中的 &lt;b&gt; 标签增加一个 class，属性值为 today
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="success_message"></div>
+                                        </div>
+                                        <div class="challenge activity"></div>
+                                    </li>
+                                    <li class="exercise activity-domChallenge" id="exercise-16">
+                                        <div class="details">
+                                            <a name="#1-6"></a>
+                                            <div class="challenge-objective">
+                                                <div class="instructions">
+                                                    <p>
+                                                        将 Dentist Appointment 区块从整个队列中移除
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="success_message"></div>
+                                        </div>
+                                        <div class="challenge activity">
+                                            <a href="#" class="next navigate-down">Continue</a>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div id="calendar" class="calendar" style="display: block;">
+                                <header>
+                                    <a class="prev" href="#">Yesterday</a> <a class="next" href="#">Tomorrow</a>
+                                    <h1 id="date" class="date">
+                                        <b>Thu</b> Mar 06 2014
+                                    </h1>
+                                </header>
+                                <ul id="events" class="events">
+                                    <li class="event">Dentist Appointment
+                                    </li>
+                                    <li class="event">Run 5K
+                                    </li>
+                                    <li class="event">Build Robot
+                                    </li>
+                                    <li class="event">Take Over the World
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('.wdj-exercise-dom .instructions').find('p').prepend('<i class="icn"></i>');
+                            });
+                            $(function() {
+                                $('.wdj-exercise-dom .exercise').eq(0).addClass('is-active');
+                                $.waterfall(function() {
+                                    var dfd = $.Deferred();
+                                    var interval_id;
+                                    function check_condition() {
+                                      if ($('.wdj-exercise-dom header .prev')[0].innerHTML == 'Prev' && $('.wdj-exercise-dom header .next')[0].innerHTML == 'Next') {
+                                        clearInterval(interval_id);
+                                        dfd.resolve('0');
+                                        console.log('0');
+                                        $('.wdj-exercise-dom .exercise').eq(0).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-dom .exercise').eq(1).addClass('is-active');
+                                      }
+                                    }
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                    var dfd = $.Deferred();
+                                    function check_condition() {
+                                    var $events = $('.wdj-exercise-dom .events');
+                                      if ($events.children()[0].innerText == 'Run 5K') {
+                                        clearInterval(interval_id);
+                                        dfd.resolve('0');
+                                        console.log('1');
+                                        $('.wdj-exercise-dom .exercise').eq(1).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-dom .exercise').eq(2).addClass('is-active');
+                                      }
+                                    }
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                        var dfd = $.Deferred();
+                                    function check_condition() {
+                                      if ($('.wdj-exercise-dom #date b')[0].className == 'today') {
+                                        clearInterval(interval_id);
+                                        dfd.resolve('0');
+                                        console.log('2');
+                                        $('.wdj-exercise-dom .exercise').eq(2).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-dom .exercise').eq(3).addClass('is-active');
+                                      }
+                                    }
+
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                    var dfd = $.Deferred();
+                                    function check_condition() {
+                                      if ($('.wdj-exercise-dom .event:contains("Dentist Appointment")').length == 0) {
+                                        clearInterval(interval_id);
+                                        dfd.resolve('0');
+                                        console.log('2');
+                                        $('.wdj-exercise-dom .exercise').eq(3).removeClass('is-active').addClass('is-complete');
+                                      }
+                                    }
+
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                  $('.wdj-exercise-dom .exercise').eq(4).removeClass('is-active').addClass('is-complete');
+                                  localStorage.setItem('dom',1);
+                                });
+                                return;
+                            })
+                        </script>
+                    </section>
+                    <section class="wdj-exercise wdj-exercise-style">
+                        <div class="level-challenge">
+                            <div class="course" id="course" style="display: block;">
+                                <ol id="exercises" class="exercises" style="list-style-type: none">
+                                    <li style="list-style: none; display: inline">
+                                        <h2>Updating Styles</h2>
+                                    </li>
+                                    <li class="exercise activity-domChallenge is-active" id="exercise-18"><div class="details"><a name="#1-8"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>移除 id 为 calendar 的元素的字体属性</p>
+                                      </div>
+                                    </div>
+                                    <div class="success_message">
+
+                                    </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-19"><div class="details"><a name="#1-9"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>将所有 event 的 margin 值从 10px 0 调整至 20px 0</p>
+                                      </div>
+                                    </div>
+                                    <div class="success_message">
+
+                                    </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-110"><div class="details"><a name="#1-10"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>将所有 event 的 box-shadow 属性的颜色调整为 green</p>
+
+                                      </div>
+                                    </div>
+                                    <div class="success_message">
+
+                                    </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-111"><div class="details"><a name="#1-11"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>将 Run 5K 的 background-color 属性调整为 beige（米黄色）</p>
+                                      </div>
+                                    </div>
+                                    <div class="success_message">
+
+                                    </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-112"><div class="details"><a name="#1-12"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>给所有 event 的 hover 状态增加 text-decoration: underline 属性，并使 Run 5K 进入 hover 状态</p>
+                                      </div>
+                                    </div>
+                                    <div class="success_message">
+
+                                    </div></div><div class="challenge activity"><a href="#" class="next navigate-down">Continue</a></div></li>
+                                </ol>
+                            </div>
+                            <div id="calendar" class="calendar" style="display: block;">
+                                <header>
+                                              <a class="prev" href="#">Prev</a>
+                                              <a class="next" href="#">Next</a>
+                                              <h1 id="date" class="date"><b>Fri</b> Mar 07 2014</h1>
+                                            </header>
+                                            <ul id="events" class="events"><li class="event">Run 5K</li><li class="event">Build Robot</li><li class="event">Take Over the World</li></ul>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('.wdj-exercise-style .instructions').find('p').prepend('<i class="icn"></i>');
+                            });
+                            $(function() {
+                                $('.wdj-exercise-style .exercise').eq(0).addClass('is-active');
+                                $.waterfall(
+                                  function() {
+                                    var dfd = $.Deferred();
+                                    var interval_id;
+                                    function check_condition() {
+                                      if ((window.getComputedStyle($('.wdj-exercise-style #calendar')[0])).getPropertyValue('font-family') != 'OpenSansRegular, Helvetica, Arial, sans-serif') {
+                                        clearInterval(interval_id);
+                                        dfd.resolve('0');
+                                        $('.wdj-exercise-style .exercise').eq(0).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-style .exercise').eq(1).addClass('is-active');
+                                      }
+                                    }
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                    var dfd = $.Deferred();
+                                    function check_condition() {
+                                      if (window.getComputedStyle($('.wdj-exercise-style .event')[0]).getPropertyValue('margin') == '20px 0px' &&
+                                                        window.getComputedStyle($('.wdj-exercise-style .event')[1]).getPropertyValue('margin') == '20px 0px') {
+                                        clearInterval(interval_id);
+                                      dfd.resolve('0');
+                                        $('.wdj-exercise-style .exercise').eq(1).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-style .exercise').eq(2).addClass('is-active');
+                                      }
+                                    }
+
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                        var dfd = $.Deferred();
+                                        function check_condition() {
+                                          if (
+                                                  true == function() {
+                                                    str = window.getComputedStyle($('.wdj-exercise-style .event')[0]).getPropertyValue("box-shadow");
+                                                    pos = str.indexOf("(") + 1;
+                                                    var rgb = str.slice(pos, str.lastIndexOf(")")).split(", ");
+                                                    rgb = rgb.map(function(color) {return parseInt(color)});
+                                                    return rgb[1] > rgb[0] && rgb[1] > rgb[2];
+                                                  }.call()
+                                                ) {
+                                            clearInterval(interval_id);
+                                          dfd.resolve('0');
+                                            $('.wdj-exercise-style .exercise').eq(2).removeClass('is-active').addClass('is-complete');
+                                            $('.wdj-exercise-style .exercise').eq(3).addClass('is-active');
+                                          }
+                                        }
+
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                    var dfd = $.Deferred();
+                                    function check_condition() {
+                                      if (window.getComputedStyle($('.wdj-exercise-style .event')[0]).getPropertyValue('background-color') == 'rgb(245, 245, 220)' &&
+                                                        window.getComputedStyle($('.wdj-exercise-style .event')[1]).getPropertyValue('background-color') == 'rgb(242, 242, 242)') {
+                                        clearInterval(interval_id);
+                                      dfd.resolve('0');
+                                        $('.wdj-exercise-style .exercise').eq(3).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-style .exercise').eq(4).addClass('is-active');
+                                        localStorage.setItem('style',1);
+                                      }
+                                    }
+
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                  var dfd = $.Deferred();
+                                  function check_condition() {
+                                    if ($('.wdj-exercise-style .event')[0].style.cssText.indexOf('underline') == -1 &&
+                                            window.getComputedStyle($('.wdj-exercise-style .event')[0], 'hover').getPropertyValue('text-decoration').split(' ')[0] == 'underline') {
+                                      clearInterval(interval_id);
+                                  dfd.resolve('0');
+                                      $('.wdj-exercise-style .exercise').eq(4).removeClass('is-active').addClass('is-complete');
+                                    }
+                                  }
+
+                                  interval_id = setInterval(function() { check_condition() }, 500);
+                                  return dfd;
+                              });
+                            });
+                        </script>
+                    </section>
+                    <section>
+                        <h2>Extra Info</h2>
+                        <ul>
+                        <li><strong>What: </strong>The <em>Elements</em> panel allows for viewing and editing elements and style information.</li>
+                        <li><strong>Where: </strong>It's the first panel. You can also access it by right-clicking an element on the page and selecting <em>Inspect element</em>.</li>
+                        <li><strong>Why: </strong>There are a number of use cases. You may wish to modify the DOM by deleting a node or adding a new one. Markup aside, the elements panel is a great place to see the applied styles of a specific node. You can also add and remove styles, as well as create new rules to possibly add to your stylesheets.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Feature: DOM Modification</h2>
+                        <img src="assets/dom-modify.png" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Locating Elements</h2>
+                        <img src="/assets/material/hover-locate-elements.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Locating Elements</h2>
+                        <img src="/assets/material/scroll-into-view.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Locating Elements</h2>
+                        <img src="/assets/material/text-search-elements.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing Style Information</h2>
+                        <img src="/assets/material/hover-element-box-model.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing Style Information</h2>
+                        <img src="/assets/material/metrics-pane.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Setting Style Information</h2>
+                        <img src="/assets/material/writing-style-property.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Feature: Setting Style Information</h2>
+                        <img src="/assets/material/colour-picker.jpg" alt="">
+                    </section>
+                </section>
+
+                <!-- resource panel -->
+                <section>
+                    <section>
+                        <h2>Resource Panel</h2>
+                        <p>
+                            Show what resources a page uses.
+                        </p>
+                        <img src="/assets/material/resources-panel-diagram.jpg" alt="resources-panel-diagram">
+                        <aside class="notes">
+                          <p>What: The resources panel shows resources associated with the page</p>
+                          <p>Why: Viewing the page's resources is essential for debugging. You might also be curious as to what information other websites store in localStorage, cookies, or any other data storage mechanism. Additionally, certain resources, such as localStorage can be modified via the developer tools.</p>
+                          <ol>
+                          <li>The button to active the <em>Resources</em> panel.</li>
+                          <li>The category pane shows the various types of resources we can inspect. A resource header (such as "Frames" or "Session Storage") may have an error next to it. This indicates there is more information, and clicking on the header reveals that information. This pane is resizable; so make it as large or small as you like.</li>
+                          <li>Page resources including fonts, images, JavaScript, CSS and the page itself can be found here. If the page uses multiple frames (for example using a frameset), then each frame appears as a separate folder within the parent "Frames" folder. This is useful for understanding the relationship between a frame and its resources.</li>
+                          <li>If Web SQL databases are used in the page, this shows their contents.</li>
+                          <li>Similar to Web SQL, IndexedDB displays the contents of the IndexedDB database.</li>
+                          <li>Displays the key/value pairs stored in <code>localStorage</code>.</li>
+                          <li>Displays the key/value pairs stored in <code>sessionStorage</code>.</li>
+                          <li>Lists the cookies created by the domain.</li>
+                          <li>Displays the assets cached according to the cache manifest. This section contains a lot of useful information. For example, a resource such as a JavaScript library will show the resource path, file size, and file type.</li>
+                          <li>Displays the details regarding the selected resource in the left-hand pane.</li>
+                          </ol>
+                        </aside>
+                    </section>
+                    <section class="wdj-exercise wdj-exercise-resource">
+                        <div class="level-challenge">
+                            <div class="course" id="course" style="display: block;">
+                                <ol id="exercises" class="exercises" style="list-style-type: none">
+                                    <li style="list-style: none; display: inline">
+                                        <h2>Inspect Resources</h2>
+                                    </li>
+                                    <li class="exercise activity-domChallenge is-active" id="exercise-18"><div class="details"><a name="#1-8"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>修复挂掉的地图ICON. icn-map.png</p>
+                                      </div>
+                                    </div>
+                                    <div class="success_message">
+
+                                    </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-19"><div class="details"><a name="#1-9"></a>
+                                    <div class="challenge-objective">
+                                      <div class="instructions">
+                                        <p><i class="icn"></i>观察network/resource面部，发现图片太大，改为小图:map-small.png.</p>
+                                      </div>
+                                    </div><div class="challenge activity"><a href="#" class="next navigate-down">Continue</a></div></li>
+                                </ol>
+                            </div>
+                            <div id="calendar" class="calendar" style="display: block;">
+                                <header>
+                                              <a class="prev" href="#">Prev</a>
+                                              <a class="next" href="#">Next</a>
+                                              <h1 id="date" class="date"><b>Fri</b> Mar 07 2014</h1>
+                                            </header>
+                                            <ul id="events" class="events">
+                                                <li class="event">Run 5K<a class="show-map" href="#">Map</a><div class="map"></div></li>
+                                                <li class="event">Build Robot<a class="show-map" href="#">Map</a><div class="map"></div></li>
+                                                <li class="event">Take Over the World<a class="show-map" href="#">Map</a><div class="map"></div></li>
+                                            </ul>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('.wdj-exercise-resource .instructions').find('p').prepend('<i class="icn"></i>');
+                                $('a.show-map').on('click', function(e) {
+                                    var _target = $(e.currentTarget).parent().find('.map');
+                                    if(_target.html()) {
+                                        _target.html('');
+                                    } else {
+                                        _target.html("<iframe style='border: 0; margin-top: 10px; position: static;' src='/assets/map.html' id='map-frame'>");
+                                    }
+                                  e.preventDefault();
+                                });
+                            });
+                            $(function() {
+                                $('.wdj-exercise-resource .exercise').eq(0).addClass('is-active');
+                                $.waterfall(
+                                  function() {
+                                    var dfd = $.Deferred();
+                                    var interval_id;
+                                    function check_condition() {
+                                      if ($('.show-map').css('background').indexOf('icn-map')>0) {
+                                        clearInterval(interval_id);
+                                        dfd.resolve('0');
+                                        $('.wdj-exercise-resource .exercise').eq(0).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-resource .exercise').eq(1).addClass('is-active');
+                                      }
+                                    }
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                    var dfd = $.Deferred();
+                                    function check_condition() {
+                                    if(!$('#map-frame').length) return;
+                                      if ($('#map-frame')[0].contentDocument.images[0].getAttribute('src').indexOf('map-small.png') > 0) {
+                                        clearInterval(interval_id);
+                                      dfd.resolve('0');
+                                        $('.wdj-exercise-resource .exercise').eq(1).removeClass('is-active').addClass('is-complete');
+                                        $('.wdj-exercise-resource .exercise').eq(2).addClass('is-active');
+                                      }
+                                    }
+
+                                    interval_id = setInterval(function() { check_condition() }, 500);
+                                    return dfd;
+                                }, function() {
+                                    localStorage.setItem('network',1);
+                                });
+                            });
+                        </script>
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing frame contents</h2>
+                        <p>Each frame is placed inside its own folder</p>
+                        <img src="/assets/material/resources-frames.jpg">
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing Fonts</h2>
+                        <p>System fonts, such as Arial or Helvetica, are not listed</p>
+                        <img src="/assets/material/resources-fonts.jpg">
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing Images</h2>
+                        <p>Info like dimensions, file size, and MIME type are displayed</p>
+                        <img src="/assets/material/resources-images.jpg">
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing Scrips & Styles</h2>
+                        <p>Content Panel just displays its content, but not much else</p>
+                        <img src="/assets/material/resources-stylesheets.jpg">
+                        <aside class="notes">More support and capabilities will be added in another panel(Source Panel which we will show right away)</aside>
+                    </section>
+                    <section>
+                        <h2>Feature: Resources that failed to load</h2>
+                        <p>When the browser will be unable to load a resource, a red notification appears to the right of the asset</p>
+                        <img src="/assets/material/resources-not-found.jpg">
+                    </section>
+                    <section>
+                        <h2>Feature: More Actions with Resources</h2>
+                        <p>Each resource has a context menu, right-clicking on it</p>
+                        <img src="/assets/material/resources-context-menu.jpg">
+                        <aside class="notes">
+                          shows a menu similar to this:You can save a resource to your computer, open a resource in a new tab, and perform many other tasks. Double-clicking the resource opens the asset in a new tab.
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Feature: Viewing Cookies</h2>
+                        <img src="/assets/material/resources-cookies.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Misc: LocalStorage SessionStorage ApplicationCache Etc</h2>
+                        <img src="/assets/material/resources-local-storage.jpg" alt="">
+                    </section>
+                </section>
+
+                <!-- sources panel -->
+                <section>
+                    <section>
+                        <h2>Sources Panel</h2>
+                        <p>the go-to place for javascript debugging!</p>
+                        <img src="/assets/material/chrome3-sources-panel-diagram.jpg">
+                        <aside class="notes">
+                          <ol>
+                          <li>The Sources Panel. If you do not see as many scripts as you expect, refresh the page with the Sources panel open.</li>
+                          <li>This pane can be either <strong>hidden</strong>, <strong>auto-hidden</strong> or <strong>fixed</strong>. Click on the small icon to the right of 'Content scripts' to toggle between these states. This pane can be resized.</li>
+                          <li>The Sources tab within the left-hand side pane; you'll likely have this tab open most of the time. The resources it lists are separated by sub-domain, and you can expect to see CSS, JavaScript and HTML within the tab. </li>
+
+                          <li>The Content Scripts tab (not active in the screenshot) may at first display many oddly named scripts. These are in fact Chrome extensions that loaded on the page. This is useful for debugging actual extensions. Otherwise, you can avoid seeing them by opening your page in an incognito window; most extensions are disabled by default in incognito mode. </li>
+                          <li>The main content pane displays the contents of the selected script. Selecting multiple scripts creates a tabbed interface similar to an IDE.</li>
+                          <li>This pane contains sub-panels that provide useful JavaScript debugging utilities. At the top of the pane are the icons to step through your code. </li>
+                          <li>Watch Expressions does exactly that, it 'watches' expressions you have typed in. If you find yourself wanting to know the value of the <code>this</code> keyword at the various stages of a JavaScript program, you can <em>watch</em> the <code>this</code> keyword to see its different values over time. Click the add button to add an expression, and if an expression doesn't update, hit the small refresh button next to the add button.</li>
+                          <li>XHR Breakpoints enables us to halt JavaScript code execution when making an Ajax request. We get even more control over this behavior by supplying a value in the 'Break when URL contains' field, which pops up when you hit the add button. Providing no value causes the debugger to break upon <strong>any XHR</strong> request.</li>
+                          <li>Event Listener breakpoints allow you to set break points for specific events. The screenshot only lists the top level categories. For example, 'Timer' has the following individual event listener breakpoints: 'Set Timer', 'Clear Timer' and 'Timer Fired'. </li>
+                          <li>If you encounter minified code, selecting 'Pretty Print' acts as a <a href="http://jsbeautifier.org/" sl-processed="1">JavaScript beautifier</a>.</li>
+                          </ol>
+                        </aside>
+                    </section>
+                    <section class="wdj-exercise wdj-exercise-script">
+                        <script type="text/javascript" src="assets/exercise-script-calendearapp.js"></script>
+                        <div class="level-challenge">
+                            <div class="course" id="course" style="display: block;">
+                                <ol id="exercises" class="exercises">                <h2>Start JavaScript debug</h2>      <li class="exercise activity-domChallenge" id="exercise-46"><div class="details"><a name="#4-6"></a>
+                                <div class="challenge-objective">
+                                  <div class="instructions">
+                                    <p><i class="icn"></i>Click the "Add Event" button, then navigate to the file that's throwing the error.</p>
+                                  </div>
+                                </div>
+                                <div class="success_message">
+
+                                </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-47"><div class="details"><a name="#4-7"></a>
+                                <div class="challenge-objective">
+                                  <div class="instructions">
+                                    <p><i class="icn"></i>Enable pause on exception.</p>
+
+                                  </div>
+                                </div>
+                                <div class="success_message">
+
+                                </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-48"><div class="details"><a name="#4-8"></a>
+                                <div class="challenge-objective">
+                                  <div class="instructions">
+                                    <p><i class="icn"></i>Click "Create Event" again to pause execution on the line that's throwing the error.</p>
+
+                                  </div>
+                                </div>
+                                <div class="success_message">
+
+                                </div></div><div class="challenge activity"></div></li><li class="exercise activity-domChallenge" id="exercise-49"><div class="details"><a name="#4-9"></a>
+                                <div class="challenge-objective">
+                                  <div class="instructions">
+                                    <p><i class="icn"></i>Now add an event to verify that your changes fixed the bug!</p>
+                                  </div>
+                                </div>
+                                <div class="success_message">
+
+                                </div></div></li></ol>
+                            </div>
+                            <div id="calendar" class="calendar" style="display: block;">
+                                <header>
+                                          <a class="prev" href="#">Prev</a>
+                                          <a class="next" href="#">Next</a>
+                                          <h1 id="date" class="date"><b>Fri</b> Mar 07 2014</h1>
+                                        </header>
+                                        <ul id="events" class="events"><li class="event">Run 5K</li><li class="event">Build Robot</li><li class="event">Take Over the World</li></ul>
+                                        <a class="new" href="#">Add Event</a>
+                                        <form class="create" style="display: none;">
+                                          <input type="text" placeholder="Enter an event">
+                                          <input type="submit" value="Create Event">
+                                        </form>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Feature: Sources Tab</h2>
+                        <img src="/assets/material/chrome3-sources-tab-sources-panel.jpg">
+                        <ul>
+                          <li>Resources grouped by the sub-domain</li>
+                          <li>Enable pretty print mode for minified resources</li>
+                          <li>Use source maps for minified if possible</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Feature: Revisions</h2>
+                        <img src="/assets/material/chrome3-revisions-sources-panel.jpg">
+                        <aside class="notes">
+                          <p>You can edit most files in the main content pane, and those changes are immediately reflected in the browser.After you've made a few changes, you can right-click on the resource and select Local Modifications. This opens a new Local Modifications pane which contains a diff of the original and edited files.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Feature: Breakpoints</h2>
+                        <img src="/assets/material/chrome3-breakpoint-inspect-sources-panel.jpg">
+                        <aside class="notes">
+                          <p>Breakpoints lets us halt JavaScript code execution and inspect the current environment. To add a breakpoint, click on the line number; you can also right-click on the line number and choose the "Add Breakpoint" option. breakpoints persist between page loads. refresh, if code is evaluated before.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Feature: Event Listener Breakpoints</h2>
+                        <img src="/assets/material/resources-stylesheets.jpg">
+                        <aside class="notes">
+                          <p>Note that breaking on a particular event only works when the page in question is listening for that event.useful breakpoint options include: form submission, copying data, DOM mutation events, device orientation, key presses, Ajax requests, mouse events (hovering, moving, clicking etc), setInterval, touchstarts and more.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Feature: DOM Breakpoints</h2>
+                        <img src="/assets/material/chrome3-dom-breakpoints-sources-panel.jpg">
+                        <aside class="notes">
+                          <ul>
+                          <li><strong>Subtree modifications</strong> occurr when any node in the tree is inserted or removed.</li>
+                          <li><strong>Attributes Modifications</strong> occurr when changing an element's attribute.</li>
+                          <li><strong>Node Removal</strong> fires when removing an element; for example: <code>element.remove()</code>.</li>
+                          </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <!-- console panel -->
+                <section>
+                    <section>
+                        <h2>Console Panel</h2>
+                        <!-- <p>Execute JavaScript code within the context( of the currently loaded page OR of the debug time).</p> -->
+                        <img src="/assets/material/console-panel-diagram.jpg" alt="">
+                        <aside class="notes">
+                          <ol>
+                          <li><a href="http://getfirebug.com/logging" sl-processed="1"><code>console.log</code></a> writes the provided values to the console. There's no need to concatenate values together; <code>console.log</code> supports multiple arguments of different types and writes each of them to the console. When you execute a command, you see the output in the immediately following line.</li>
+                          <li>You may occasionally see "<code>[native code]</code>" when attempting to view a native function's definition. </li>
+                          <li>You can write <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function" sl-processed="1">functions</a> and execute them. Be aware that pressing the <em>enter key</em> executes the code you typed into the console instead of inserting a new line. Hold <em>shift+enter</em> to insert a new line.</li>
+                          <li>An example of an <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array" sl-processed="1">array</a>. Notice the colors are different for different types of values.</li>
+                          <li>An example of a large array with 303 elements. Notice how the elements are grouped together; this prevents the console from being flooded with large amounts of data.</li>
+                          <li><code>$0</code> is a shortcut to return the currently selected element in the <a href="https://developers.google.com/chrome-developer-tools/docs/elements" sl-processed="1"><em>Elements</em> panel</a>. Right-clicking on an element in the console gives you an option to view that element in the <em>Elements</em> panel.</li>
+                          <li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Error" sl-processed="1">Errors</a> stand out from other console entries thanks to their red color and icon.</li>
+                          <li>We can access anything in the page's scope, including the <a href="https://developer.mozilla.org/en-US/docs/DOM/window" sl-processed="1">window object</a>. In the screenshot, I created a new <code>WebKitCSSMatrix</code> object.</li>
+                          <li>You can also style console entries using CSS.</li>
+                          <li>The console provides code completion. Try typing in "<code>window.</code>" and see the vast amount of properties you can choose from!</li>
+                          </ol>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Feature: Inspecting</h2>
+                        <p>When inspect large object, you can inspect them by clicking on the drop down arrow immediately to the left of the object.</p>
+                        <img src="/assets/material/console-inspect.jpg" alt="">
+                    </section>
+                    <section>
+                        <h2>Misc</h2>
+                        <p>Console API && Command Shortcuts</p>
+                        <div>
+                            console object API:
+                            assert, clear, count, debug dir, dirxml,
+                            error, group, groupEnd, groupCollapsed,
+                            info, log, profile, fileEnd, time, timeEnd, timeStamp, trace, warn;
+                            debugger statement
+                        </div>
+                        <div>
+                            $_, $0, $1, $2, $3, $4
+                            $(selector), $$(selector), $x(path)， clear(), copy(object),
+                            dir(object), keys(object), values(object), dirxml(),
+                            inspect(), getEventListeners(object), monitorEvents(), unmonitorEvents,
+                            getEventListeners(object), profile(), profileEnd()
+                        </div>
+                    </section>
+                </section>
+
+                <!-- network -->
+                <section>
+                    <section>
+                        <h2>Network Panel</h2>
+                        <!-- <p>a view into the resources that are requested and downloaded over the network in real-time.</p> -->
+                        <img src="/assets/material/network-panel-diagram.jpg" alt="">
+                        <aside class="notes">
+                          <ol>
+                          <li>This button opens the <em>Network</em> panel. Be sure to open the tab <strong>before</strong> loading a page so that it captures the network requests (e.g. open a new browser tab, open up developer tools, open up the network tab and then finally load the URL to monitor) </li>
+                          <li>This row contains one resource with interesting information that I cover in the following points. The first column is the name and path of the resource. The resource name will show on the first line while the path to the resource shows on the second. </li>
+                          <li>The <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods" sl-processed="1">HTTP method</a> used for the request.</li>
+                          <li>The <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Success" sl-processed="1">HTTP status code</a> returned by the server. <code>200</code> is a common response for a successful response; although anything within the range of 200-299 is considered OK. Notice how one of the above requests is in red. This is related to the HTTP response code, a <a href="http://www.flickr.com/photos/girliemac/6508023065/" sl-processed="1">401 Unauthorized</a> response, because I'm not logged in to the LinkedIn mobile site. </li>
+                          <li>The <a href="http://en.wikipedia.org/wiki/MIME#Content-Type" sl-processed="1">content-type</a> of a request. For example, in an HTTP POST (using the metrics resource as an example), the content-type in the request and response headers is: <code>application/json</code>; whereas, the main HTML page's response headers contain a content-type of <code>text/html</code>. A small note on the application cache: when serving a manifest file, be sure to serve it with a content type of <code>text/cache-manifest</code>. When debugging, the "Type" column in the <em>Network</em> panel is the place to ensure it's being served correctly!</li>
+                          <li>The initiator is an interesting column; it allows us to see why a resource is downloaded. For example, you may see the <a href="https://www.google.co.uk/search?q=utm.gif" sl-processed="1">__utm.gif</a> file often in your debugging sessions; it is used by Google Analytics. The initiator shows as <code>ga.js:52</code>, a value in <code>file_name:line_number</code> format. With this column, you can discover why, when, and how resources are downloaded. If <code>Parser</code> is shown for the initiator, chances are good that the browser initiated the request upon seeing something like a <code>&lt;link /&gt;</code> or <code>&lt;script /&gt;</code> element in the document. </li>
+                          <li>This displays the size of the resource, an invaluable piece of information. When building a site, be sure to regularly "sort by size" in the <em>Network</em> panel and ensure that your resource sizes are correct. It is sometimes considered a good practice to <a href="http://stackoverflow.com/questions/1124149/is-embedding-background-image-data-into-css-as-base64-good-or-bad-practice" sl-processed="1">base 64 encode images</a> and embed them in CSS files. This can reduce the number of HTTP requests, but it also increases your CSS file's size. Large resources should be delayed as much as possible to provide a snappy experience for the user.</li>
+                          <li>This displays the amount of time it took to retrieve the resource. Resources served from a different domain may take longer to download than other resources served from another origin.</li>
+                          <li><a href="https://developer.mozilla.org/en-US/docs/DOM/DOM_event_reference/DOMContentLoaded" sl-processed="1">DOMContentLoaded</a> (an event we can listen for using JavaScript) fires once the DOM is ready.</li>
+                          <li>The <a href="https://developer.mozilla.org/en-US/docs/DOM/window.onload" sl-processed="1">Load event</a> which fires when the DOM is ready and resources have finished loading.</li>
+                          <li>Timeline view of network requests. You can hover over them for more information.</li>
+                          <li>Total size transferred, number of requests, and time taken.</li>
+                          <li>Icons to interact with the <em>Network</em> panel, such as clearing the panel of all requests and changing icon size.</li>
+                          <li>Useful network requests filters, e.g. you can control + click XHR and Images to only show network requests for an image resource or a request made with an XHR object.</li>
+                          <li>Headings for the network requests; you can click a heading to sort the requests by the data in the column.</li>
+                          </ol>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>结业证书</h2>
+                        <p><button id="queryResultBtn">发送请求</button></p>
+                        <script type="text/javascript">
+                            $('#queryResultBtn').click(function(e) {
+                                $.post('/api/test/result', {
+                                    network: localStorage.getItem('network'),
+                                    dom: localStorage.getItem('dom'),
+                                    style: localStorage.getItem('style'),
+                                    javascript: localStorage.getItem('javascript')
+                                }).then(function(resp) {
+                                    console.log(resp);
+                                });
+                            });
+                        </script>
+                        <style type="text/css">
+                            .reveal.page .slides .badge {
+                                float: left;
+                                margin: 0 20px 10px 0;
+                                padding-left: 0;
+                            }
+                            .reveal.page .slides .badge img{
+                                border-radius: 50%;
+                                border: 1px solid #dedede;
+                                height: 75px;
+                                padding: 5px;
+                                width: 75px;
+                            }
+                        </style>
+                        <div class="card badges">
+                        <h2>Badges you can earn:</h2>
+                        <div class="badge is-incomplete">
+                        <img alt="Discover DevTools Level 1 Completion Badge" src="assets/badges/badge-01-small.png"></div>
+                        <div class="badge is-incomplete">
+                        <img alt="Discover DevTools Level 2 Completion Badge" src="assets/badges/badge-02-small.png"></div>
+                        <div class="badge is-incomplete">
+
+                        <img alt="Discover DevTools Level 3 Completion Badge" src="assets/badges/badge-03-small.png"></div>
+                        <div class="badge is-incomplete">
+                        <img alt="Discover DevTools Level 4 Completion Badge" src="assets/badges/badge-04-small.png"></div>
+                        <div class="badge is-incomplete">
+                            <img alt="Discover DevTools Level 4 Completion Badge" src="assets/badges/badge-05-small.png"></div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Feature: Detail for Resource</h2>
+                        <img src="/assets/material/network-selected-resource.jpg" alt="">
+                        <aside class="notes">
+                          <ul>
+                          <li><strong>Headers</strong> contains the <a href="http://net.tutsplus.com/tutorials/other/http-headers-for-dummies/" sl-processed="1">request and response headers</a>.</li>
+                          <li><strong>Preview</strong> contains a preview of the resource, for example a rendered image or some source code.</li>
+                          <li><strong>Response</strong> is similar to Preview and shows what was received from the server.</li>
+                          <li><strong>Cookies</strong> (if any) shows <a href="http://net.tutsplus.com/tutorials/javascript-ajax/an-introduction-to-cookies/" sl-processed="1">cookies</a> sent with the request.</li>
+                          <li><strong>Timing</strong> contains information on how long a request actually took to download.</li>
+                          </ul>
+                        </aside>
+                    </section>
+                </section>
+
+                <!-- timeline -->
+                <section>
+                    <h2>Timeline Panel</h2>
+                    <p>Make the web jank-free</p>
+                    <p>Investigate your web app's performance issues</p>
+                    <img src="/assets/material/chrome3-timeline-panel-diagram.jpg" alt="">
+                </section>
+
+                <!-- the end -->
+                <section>
+                    <h1>THE END</h1>
+                    <h3>FOR FE 101 BY SIVAGAO <img src="assets/badge-course-small.png" style="vertical-align: middle; border: none; background: none;"></h3>
+                </section>
+
+                <!-- the bonus -->
+                <section>
+                    <section>
+                        <h3>Remote Debugging</h3>
+                        <img src="https://developers.google.com/chrome-developer-tools/docs/remote-debugging/remote-debug-overview.jpg" alt="">
+                    </section>
+                    <section>
+                        <h3>Connect To</h3>
+                        <img src="https://developers.google.com/chrome-developer-tools/docs/remote-debugging/about-inspect-stuff.png" alt="">
+                    </section>
+                    <section>
+                        <h3>Debug Webview</h3>
+                        <img src="https://developers.google.com/chrome-developer-tools/docs/remote-debugging/about-inspect-webview.gif" alt="">
+                    </section>
+                </section>
+
+                <!-- docs link -->
+                <section>
+                    <section>
+                        <h3>Learn More - Offical Doc</h3>
+                        <img src="assets/offical-docs.png" alt="">
+                    </section>
+                    <section>
+                        <h3>Learn More - CodeSchool Course</h3>
+                        <img src="assets/code-school-course.png" alt="">
+                    </section>
+                </section>
+
+			</div>
+
+		</div>
+
+<link rel="stylesheet" href="/assets/annotorious/annotorious-dark.css">
+<style type="text/css">
+    .annotorious-hint {
+        display: none!important;
+    }
+    .reveal .slides .annotorious-popup-text{
+        text-align: left;
+    }
+/*    .reveal .annotorious-popup-buttons{
+        display: none!important;
+    }*/
+</style>
+<script type="text/javascript" src="/assets/annotorious/annotorious.min.js"></script>
+<!-- Import Parse's javascript sdk - the plugin depends on it! -->
+<script src="http://www.parsecdn.com/js/parse-1.2.8.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://dommmel.github.io/annotorious-parse-plugin/anno-parse-plugin.css">
+<script type="text/javascript" src="http://dommmel.github.io/annotorious-parse-plugin/anno-parse-plugin.js"></script>
+<!-- End Import Parse -->
+<script type="text/javascript">
+    $(function() {
+        $('section img').addClass('annotatable');
+        anno.makeAnnotatable();
+    });
+    anno.addPlugin('Parse', { app_id: 'EBnbQjZJHbKL0nQDL6QVQ4qZaQoCkm1VPPtVClwl', js_key: 'sMJ5jfFhfhqjN2ZX4dpSdLXAHP98pZNMnX0UC4sN' });
+</script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script>
+            $(function() {
+                $('.wdj-exercise a').click(function(){return false});
+            });
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'page', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				parallaxBackgroundImage: '/assets/reveal-js/reveal-parallax-1.jpg',
+				parallaxBackgroundSize: '2100px 1200px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // Remote control your reveal.js presentation using a touch device
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+
+                    // enable server-nodes
+                    // { src: 'socket.io/socket.io.js', async: true },
+                    // { src: 'plugin/notes-server/client.js', async: true }
+				]
+			});
+
+		</script>
+        <!-- // <script type="text/javascript" src="/assets/annotorious/data.js"></script> -->
+	</body>
+</html>

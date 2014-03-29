@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Annotorious OpenSeadragon Test Page</title>
+    <script src="openseadragon/openseadragon.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/theme-dark/annotorious-dark.css" />
+    <script type="text/javascript" src="http://localhost:9810/compile?id=annotorious"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        var viewer = OpenSeadragon({
+          id: "openseadragon1",
+          prefixUrl: "openseadragon/images/",
+          showNavigator: false,
+          tileSources: {
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '2003rosen1799/0001q.jpg',
+                height: 889,
+                width:  600
+            },{
+                url: '2003rosen1799/0001r.jpg',
+                height: 2201,
+                width:  1485
+            },{
+                url: '2003rosen1799/0001v.jpg',
+                height: 4402,
+                width:  2970
+            }]
+          }
+        });
+        
+        anno.makeAnnotatable(viewer);
+      }
+    </script>
+  </head>
+  
+  <body>
+    <div id="openseadragon1" style="width: 800px; height: 600px;"></div>
+  </body>    
+</html>

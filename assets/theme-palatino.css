@@ -1,0 +1,51 @@
+.theme-font-palatino .themed,.theme-font-palatino.themed,.theme-font-palatino .reveal,.theme-font-palatino.reveal {
+    font-family: "Palatino Linotype","Book Antiqua",Palatino,FreeSerif,serif;
+    font-size: 36px;
+    font-weight: normal;
+    letter-spacing: -0.02em
+}
+
+.theme-font-palatino .themed h1,.theme-font-palatino .themed h2,.theme-font-palatino .themed h3,.theme-font-palatino .themed h4,.theme-font-palatino .themed h5,.theme-font-palatino .themed h6,.theme-font-palatino.themed h1,.theme-font-palatino.themed h2,.theme-font-palatino.themed h3,.theme-font-palatino.themed h4,.theme-font-palatino.themed h5,.theme-font-palatino.themed h6,.theme-font-palatino .reveal h1,.theme-font-palatino .reveal h2,.theme-font-palatino .reveal h3,.theme-font-palatino .reveal h4,.theme-font-palatino .reveal h5,.theme-font-palatino .reveal h6,.theme-font-palatino.reveal h1,.theme-font-palatino.reveal h2,.theme-font-palatino.reveal h3,.theme-font-palatino.reveal h4,.theme-font-palatino.reveal h5,.theme-font-palatino.reveal h6 {
+    font-family: "Palatino Linotype","Book Antiqua",Palatino,FreeSerif,serif;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    margin: 0 0 20px 0
+}
+
+.theme-font-palatino .themed h1,.theme-font-palatino.themed h1,.theme-font-palatino .reveal h1,.theme-font-palatino.reveal h1 {
+    font-size: 115.362px
+}
+
+.theme-font-palatino .themed h2,.theme-font-palatino.themed h2,.theme-font-palatino .reveal h2,.theme-font-palatino.reveal h2 {
+    font-size: 64.566px
+}
+
+.theme-font-palatino .themed h3,.theme-font-palatino.themed h3,.theme-font-palatino .reveal h3,.theme-font-palatino.reveal h3 {
+    font-size: 47.43px
+}
+
+.theme-font-palatino .themed h4,.theme-font-palatino.themed h4,.theme-font-palatino .reveal h4,.theme-font-palatino.reveal h4 {
+    font-size: 30.6px
+}
+
+.theme-font-palatino .themed h5,.theme-font-palatino.themed h5,.theme-font-palatino .reveal h5,.theme-font-palatino.reveal h5 {
+    font-size: 30.6px
+}
+
+.theme-font-palatino .themed h6,.theme-font-palatino.themed h6,.theme-font-palatino .reveal h6,.theme-font-palatino.reveal h6 {
+    font-size: 30.6px
+}
+
+.theme-font-palatino .themed h1,.theme-font-palatino.themed h1,.theme-font-palatino .reveal h1,.theme-font-palatino.reveal h1 {
+    text-shadow: 0px 0px 6px rgba(0,0,0,0.2)
+}
+
+.theme-font-palatino .themed section,.theme-font-palatino .themed section p,.theme-font-palatino .themed section div,.theme-font-palatino .themed section a.roll,.theme-font-palatino.themed section,.theme-font-palatino.themed section p,.theme-font-palatino.themed section div,.theme-font-palatino.themed section a.roll,.theme-font-palatino .reveal section,.theme-font-palatino .reveal section p,.theme-font-palatino .reveal section div,.theme-font-palatino .reveal section a.roll,.theme-font-palatino.reveal section,.theme-font-palatino.reveal section p,.theme-font-palatino.reveal section div,.theme-font-palatino.reveal section a.roll {
+    line-height: 1.3em
+}
+
+.theme-font-palatino .themed section font,.theme-font-palatino.themed section font,.theme-font-palatino .reveal section font,.theme-font-palatino.reveal section font {
+    line-height: 1
+}
