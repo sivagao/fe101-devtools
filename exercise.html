@@ -1,0 +1,601 @@
+<html>
+    <head>
+        <style type="text/css">
+            @font-face {
+            font-family: "OpenSansLight";
+            src: url(assets/OpenSans-Light-webfont.eot);
+            src: url(assets/OpenSans-Light-webfont.eot?#iefix) format("embedded-opentype"), url(assets/OpenSans-Light-webfont.woff) format("woff"), url(assets/OpenSans-Light-webfont.ttf) format("truetype"), url(assets/OpenSans-Light-webfont.svg#OpenSansLight) format("svg");
+            font-weight: normal;
+            font-style: normal;
+            }
+            @font-face {
+            font-family: "OpenSansRegular";
+            src: url(assets/OpenSans-Regular-webfont.eot);
+            src: url(assets/OpenSans-Regular-webfont.eot?#iefix) format("embedded-opentype"), url(assets/OpenSans-Regular-webfont.woff) format("woff"), url(assets/OpenSans-Regular-webfont.ttf) format("truetype"), url(assets/OpenSans-Regular-webfont.svg#OpenSansRegular) format("svg");
+            font-weight: normal;
+            font-style: normal;
+            }
+            @font-face {
+            font-family: "OpenSansRegular";
+            src: url(assets/OpenSans-Bold-webfont.eot);
+            src: url(assets/OpenSans-Bold-webfont.eot?#iefix) format("embedded-opentype"), url(assets/OpenSans-Bold-webfont.woff) format("woff"), url(assets/OpenSans-Bold-webfont.ttf) format("truetype"), url(assets/OpenSans-Bold-webfont.svg#OpenSansBold) format("svg");
+            font-weight: bold;
+            font-style: normal;
+            }
+
+            .events .event .show-map {
+            background-color: transparent;
+            border: 0;
+            overflow: hidden;
+            }
+            .events .event .show-map:before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 150%;
+            }
+
+            html {
+            font-size: 16px;
+            }
+            body {
+            color: #313131;
+            font: 62.5%/1.5 "OpenSansRegular", Helvetica, Arial, sans-serif;
+            margin: 0 auto;
+            min-width: 768px;
+            -webkit-font-smoothing: antialiased;
+            }
+
+            .calendar {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            display: none;
+            background: white;
+            border: 1px solid #dedede;
+            font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
+            margin: 20px 40px 10px;
+            padding: 15px 15px 35px 15px;
+            position: static;
+            z-index: 1;
+            }
+            @media screen and (min-width: 1000px) {
+            .calendar {
+            margin: 0;
+            position: absolute;
+            right: 80px;
+            top: 95px;
+            width: 38%;
+            }
+            }
+
+            iframe {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 0;
+            }
+            @media screen and (min-width: 1000px) {
+            iframe {
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            }
+            }
+
+            header {
+            position: relative;
+            text-align: center;
+            }
+            header .date {
+            color: #bebebe;
+            font-family: "OpenSansLight", Helvetica, Arial, sans-serif;
+            font-size: 1.6em;
+            letter-spacing: -0.1em;
+            line-height: 2.2em;
+            margin: 0;
+            text-transform: uppercase;
+            }
+            header .date b {
+            display: block;
+            font: bold 3.2em/0.8em "OpenSansRegular", Helvetica, Arial, sans-serif;
+            letter-spacing: 0;
+            }
+            header .date .today {
+            color: #459be7;
+            }
+            header a {
+            border-bottom: 1px solid #edb330;
+            color: #777777;
+            font-size: 1.6em;
+            padding-bottom: 2px;
+            position: absolute;
+            text-decoration: none;
+            top: 10px;
+            }
+            header a:hover {
+            color: #edb330;
+            }
+            header a.prev {
+            left: 0;
+            }
+            header a.next {
+            right: 0;
+            }
+
+            h1 img {
+            margin-right: 10px;
+            position: relative;
+            top: 5px;
+            width: 35px;
+            height: 35px;
+            }
+
+            .events {
+            padding-left: 0;
+            }
+            .events .event {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            background: #f2f2f2;
+            border: 1px solid #dedede;
+            border-radius: 2px;
+            box-shadow: 0 3px 0 #edb330;
+            color: #777777;
+            font-size: 1.6em;
+            list-style-type: none;
+            margin: 10px 0;
+            padding: 10px 15px;
+            position: relative;
+            }
+            .events .event:last-child {
+            margin-bottom: 0;
+            }
+            .events .event iframe {
+            width: 100%;
+            }
+            .events .event .show-map {
+            background: url(assets/icn-map.png) 0 0 no-repeat;
+            display: inline-block;
+            height: 20px;
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 12px;
+            }
+
+            .new {
+            margin-top: 20px;
+            }
+            .new,
+            .create input[type="submit"] {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            background: #edb330;
+            border: 0;
+            color: white;
+            cursor: pointer;
+            display: block;
+            font: bold 1.6em "OpenSansRegular", Helvetica, Arial, sans-serif;
+            padding: 11px 20px 10px;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            }
+            .new:hover,
+            .create input[type="submit"]:hover {
+            text-decoration: underline;
+            }
+            .create input[type="text"] {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            background: white;
+            border: 1px solid #dedede;
+            font: 1.6em "OpenSansRegular", Helvetica, Arial, sans-serif;
+            padding: 10px;
+            width: 100%;
+            }
+            .create input[type="text"]:focus {
+            outline: none;
+            }
+            .create input[type="submit"] {
+            border-left: 2px solid #dedede;
+            display: block;
+            position: absolute;
+            right: 1px;
+            top: 0;
+            width: 160px;
+            }
+            .create {
+            margin-top: 20px;
+            overflow: auto;
+            position: relative;
+            }
+        </style>
+        <style>
+        /* line 58, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercises {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          margin: 0 auto;
+          padding: 40px 24px 10px 40px;
+        }
+        /* line 65, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .level-video .exercises {
+          padding-right: 0;
+        }
+        /* line 70, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .level-challenge .exercises {
+          margin: 0;
+          width: 100%;
+        }
+        @media screen and (min-width: 1000px) {
+          /* line 70, ../../appassets/stylesheets/modules/_exercise.css.sass */
+          .level-challenge .exercises {
+            width: 55%;
+          }
+        }
+        /* line 75, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .level-challenge .exercises h2 {
+          display: inline-block;
+          line-height: 1.1;
+          margin-top: 5px;
+          width: 95%;
+          font-family: "OpenSansLight", Helvetica, Arial, sans-serif;
+          font-size: 3.5em;
+          margin: 40px 0 20px;
+        }
+
+        /* line 83, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise {
+          position: relative;
+        }
+        /* line 88, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise .challenge-objective .instructions p {
+          color: #bebebe;
+          font-size: 1.6em;
+          padding-left: 30px;
+          position: relative;
+        }
+        /* line 94, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise .challenge-objective .instructions p .icn {
+          background: url(assets/icn-next.png) 0 0 no-repeat;
+          display: block;
+          height: 11px;
+          left: 0;
+          margin-right: 10px;
+          position: absolute;
+          top: 7px;
+          width: 21px;
+        }
+        @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+          /* line 94, ../../appassets/stylesheets/modules/_exercise.css.sass */
+          .exercise .challenge-objective .instructions p .icn {
+            background-image: url(assets/icn-next.png);
+            background-size: 21px 11px;
+          }
+        }
+        /* line 107, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise .challenge-objective .instructions p .clear-waterfall {
+          border: 1px solid gray;
+          position: relative;
+          top: 3px;
+        }
+        /* line 114, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise .challenge-objective .instructions p .clear-map-icon {
+          position: relative;
+          top: 3px;
+        }
+        /* line 120, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise .challenge-objective .instructions p code {
+          background: white;
+          border: 1px solid #dedede;
+          border-radius: 1px;
+          color: #bebebe;
+          font-family: Monaco, Courier, monospace;
+          font-size: 0.8em;
+          padding: 0 2px;
+        }
+        /* line 132, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.activity-domChallenge .next {
+          opacity: 0;
+          -webkit-transition: opacity 0.2s ease-in-out;
+          transition: opacity 0.2s ease-in-out;
+          visibility: hidden;
+        }
+        /* line 137, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.activity-domChallenge.is-complete .next {
+          opacity: 1;
+          visibility: visible;
+        }
+        /* line 143, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-hidden {
+          display: none;
+        }
+        /* line 149, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-complete .challenge-objective .instructions p {
+          color: #499a26;
+          -webkit-transition: color 0.5s 0.5s ease-in-out;
+          transition: color 0.5s 0.5s ease-in-out;
+        }
+        /* line 153, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-complete .challenge-objective .instructions p .icn {
+          -webkit-animation: bounceInDown 0.8s 0.2s ease both;
+          -moz-animation: bounceInDown 0.8s 0.2s ease both;
+          -ms-animation: bounceInDown 0.8s 0.2s ease both;
+          -o-animation: bounceInDown 0.8s 0.2s ease both;
+          animation: bounceInDown 0.8s 0.2s ease both;
+          background-image: url(assets/icn-success.png);
+          height: 17px;
+          top: 2px;
+          width: 20px;
+        }
+        @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+          /* line 153, ../../appassets/stylesheets/modules/_exercise.css.sass */
+          .exercise.is-complete .challenge-objective .instructions p .icn {
+            background-image: url(assets/icn-success@2x.png);
+            background-size: 20px 17px;
+          }
+        }
+        /* line 160, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-complete .challenge-objective .instructions p code {
+          color: #499a26;
+          -webkit-transition: color 0.5s 0.5s ease-in-out;
+          transition: color 0.5s 0.5s ease-in-out;
+        }
+        /* line 168, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-active .challenge-objective .instructions p {
+          color: #459be7;
+          font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
+          font-weight: bold;
+        }
+        /* line 172, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-active .challenge-objective .instructions p .icn {
+          background-image: url(assets/icn-challenge.png);
+          height: 16px;
+          top: 4px;
+          width: 20px;
+        }
+        @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+          /* line 172, ../../appassets/stylesheets/modules/_exercise.css.sass */
+          .exercise.is-active .challenge-objective .instructions p .icn {
+            background-image: url(assets/icn-challenge@2x.png);
+            background-size: 20px 16px;
+          }
+        }
+        /* line 178, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercise.is-active .challenge-objective .instructions p code {
+          color: #459be7;
+        }
+
+        /* line 183, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .instructions-header {
+          color: #777777;
+          font-size: 2.2em;
+          margin-top: 40px;
+        }
+
+        /* line 188, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .instructions-num {
+          border-right: 1px solid #f2f2f2;
+          font-weight: bold;
+          margin-right: 10px;
+          padding-right: 10px;
+        }
+
+        /* line 202, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .btn {
+          background: #459be7;
+          color: white;
+          display: block;
+          font: bold 2.4em "OpenSansRegular", Helvetica, Arial, sans-serif;
+          margin: 20px auto;
+          padding: 12px 24px;
+        }
+        /* line 209, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .btn:hover {
+          background: #1c82dd;
+          text-decoration: none;
+        }
+        /* line 215, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .level-video .next, .level-video .btn {
+          float: left;
+          margin-bottom: 0;
+          margin-right: 2%;
+          text-align: center;
+          width: 70%;
+        }
+        @media screen and (min-width: 1015px) {
+          /* line 215, ../../appassets/stylesheets/modules/_exercise.css.sass */
+          .level-video .next, .level-video .btn {
+            margin-right: 1%;
+            width: 74%;
+          }
+        }
+
+        /* line 264, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercises .toggle-play-video {
+          background: url(assets/icn-video-5448b280ca5c1b2f9de659d703a31920.png) 0 2px no-repeat;
+          color: #777777;
+          font: bold 0.4em "OpenSansRegular", Helvetica, Arial, sans-serif;
+          margin-left: 20px;
+          padding: 0 0 2px 30px;
+          position: relative;
+          top: -2px;
+        }
+        @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dppx) {
+          /* line 264, ../../appassets/stylesheets/modules/_exercise.css.sass */
+          .exercises .toggle-play-video {
+            background-image: url(assets/icn-video@2x-d721d3ae7290eb6d514df1e6f36d2fe5.png);
+            background-size: 20px 16px;
+          }
+        }
+        /* line 273, ../../appassets/stylesheets/modules/_exercise.css.sass */
+        .exercises .toggle-play-video:hover {
+          color: #459be7;
+        }
+</style>
+        <title></title>
+    </head>
+    <body>
+        <section class="wdj-exercise level-challenge">
+            <section class="course" id="course" style="display: block;">
+                <ol id="exercises" class="exercises" style="list-style-type: none">
+                    <li style="list-style: none; display: inline">
+                        <h2>Dom Manipulation</h2>
+                    </li>
+                    <li class="exercise activity-domChallenge is-active" id="exercise-13">
+                        <div class="details">
+                            <a name="#1-3"></a>
+                            <div class="challenge-objective">
+                                <div class="instructions">
+                                    <p>
+                                        Change "Yesterday" to "Prev" and "Tomorrow" to "Next" in the sample app.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="success_message"></div>
+                        </div>
+                        <div class="challenge activity"></div>
+                    </li>
+                    <li class="exercise activity-domChallenge" id="exercise-14">
+                        <div class="details">
+                            <a name="#1-4"></a>
+                            <div class="challenge-objective">
+                                <div class="instructions">
+                                    <p>
+                                        Move the "Run 5K" event to top of the list.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="success_message"></div>
+                        </div>
+                        <div class="challenge activity"></div>
+                    </li>
+                    <li class="exercise activity-domChallenge" id="exercise-15">
+                        <div class="details">
+                            <a name="#1-5"></a>
+                            <div class="challenge-objective">
+                                <div class="instructions">
+                                    <p>
+                                        Add a class attribute of "today" to the &lt;b&gt; element inside of the date &lt;h1&gt;.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="success_message"></div>
+                        </div>
+                        <div class="challenge activity"></div>
+                    </li>
+                    <li class="exercise activity-domChallenge" id="exercise-16">
+                        <div class="details">
+                            <a name="#1-6"></a>
+                            <div class="challenge-objective">
+                                <div class="instructions">
+                                    <p>
+                                        Remove the "Dentist Appointment" event from the list.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="success_message"></div>
+                        </div>
+                        <div class="challenge activity">
+                            <a href="#" class="">Continue</a>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            <section id="calendar" class="calendar" style="display: block;">
+                <header>
+                    <a class="prev" href="#">Yesterday</a> <a class="next" href="#">Tomorrow</a>
+                    <h1 id="date" class="date">
+                        <b>Thu</b> Mar 06 2014
+                    </h1>
+                </header>
+                <ul id="events" class="events">
+                    <li class="event">Dentist Appointment
+                    </li>
+                    <li class="event">Run 5K
+                    </li>
+                    <li class="event">Build Robot
+                    </li>
+                    <li class="event">Take Over the World
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <script type="text/javascript" src="assets/jquery.js"></script>
+        <script type="text/javascript" src="assets/jquery-ui.js"></script>
+        <script type="text/javascript" src="assets/jquery.waterfall.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('.instructions').find('p').prepend('<i class="icn"></i>');
+            });
+            $(function() {
+                $('.exercise').eq(0).addClass('is-active');
+                $.waterfall(function() {
+                    var dfd = $.Deferred();
+                    var interval_id;
+                    function check_condition() {
+                      if ($('.prev')[0].innerHTML == 'Prev' && $('.next')[0].innerHTML == 'Next') {
+                        clearInterval(interval_id);
+                        dfd.resolve('0');
+                        console.log('0');
+                        $('.exercise').eq(0).removeClass('is-active').addClass('is-complete');
+                        $('.exercise').eq(1).addClass('is-active');
+                      }
+                    }
+                    interval_id = setInterval(function() { check_condition() }, 500);
+                    return dfd;
+                }, function() {
+                    var dfd = $.Deferred();
+                    function check_condition() {
+                    var $events = $('.events');
+                      if ($events.children()[0].innerText == 'Run 5K') {
+                        clearInterval(interval_id);
+                        dfd.resolve('0');
+                        console.log('1');
+                        $('.exercise').eq(1).removeClass('is-active').addClass('is-complete');
+                        $('.exercise').eq(2).addClass('is-active');
+                      }
+                    }
+
+                    interval_id = setInterval(function() { check_condition() }, 500);
+                    return dfd;
+                }, function() {
+                        var dfd = $.Deferred();
+                    function check_condition() {
+                      if ($('#date b')[0].className == 'today') {
+                        clearInterval(interval_id);
+                        dfd.resolve('0');
+                        console.log('2');
+                        $('.exercise').eq(2).removeClass('is-active').addClass('is-complete');
+                        $('.exercise').eq(3).addClass('is-active');
+                      }
+                    }
+
+                    interval_id = setInterval(function() { check_condition() }, 500);
+                    return dfd;
+                }, function() {
+                    var dfd = $.Deferred();
+                    function check_condition() {
+                      if ($('.event:contains("Dentist Appointment")').length == 0) {
+                        clearInterval(interval_id);
+                        dfd.resolve('0');
+                        console.log('2');
+                        $('.exercise').eq(3).removeClass('is-active').addClass('is-complete');
+                      }
+                    }
+
+                    interval_id = setInterval(function() { check_condition() }, 500);
+                    return dfd;
+                });
+                return;
+            })
+        </script>
+    </body>
+</html>

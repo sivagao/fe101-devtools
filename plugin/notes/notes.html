@@ -12,15 +12,21 @@
 
 			#notes {
 				font-size: 24px;
-				width: 640px;
 				margin-top: 5px;
 				clear: left;
 			}
 
+            .wrap-slides{
+                width: 40%;
+                float: left;
+            }
+            .wrap-more{
+                width: 58%;
+                overflow: auto;
+                float: right;
+            }
 			#wrap-current-slide {
-				width: 640px;
 				height: 512px;
-				float: left;
 				overflow: hidden;
 			}
 
@@ -43,9 +49,7 @@
 			}
 
 			#wrap-next-slide {
-				width: 448px;
 				height: 358px;
-				float: left;
 				margin: 0 0 0 10px;
 				overflow: hidden;
 			}
@@ -146,27 +150,30 @@
 			var notesNextSlideURL = getNotesURL( false );
 		</script>
 
-		<div id="wrap-current-slide" class="slides">
-			<script>document.write( '<iframe width="1280" height="1024" id="current-slide" src="'+ notesCurrentSlideURL +'"></iframe>' );</script>
-		</div>
+        <div class="wrap-slides">
+            <div id="wrap-current-slide" class="slides">
+                <script>document.write( '<iframe width="1280" height="1024" id="current-slide" src="'+ notesCurrentSlideURL +'"></iframe>' );</script>
+            </div>
 
-		<div id="wrap-next-slide" class="slides">
-			<script>document.write( '<iframe width="640" height="512" id="next-slide" src="'+ notesNextSlideURL +'"></iframe>' );</script>
-			<span>UPCOMING:</span>
-		</div>
+            <div id="wrap-next-slide" class="slides">
+                <script>document.write( '<iframe width="640" height="512" id="next-slide" src="'+ notesNextSlideURL +'"></iframe>' );</script>
+                <span>UPCOMING:</span>
+            </div>
+        </div>
 
-		<div class="time">
-			<div class="clock">
-				<h2>Time</h2>
-				<span id="clock">0:00:00 AM</span>
-			</div>
-			<div class="elapsed">
-				<h2>Elapsed</h2>
-				<span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
-			</div>
-		</div>
-
-		<div id="notes"></div>
+        <div class="wrap-more">
+            <div class="time">
+                <div class="clock">
+                    <h2>Time</h2>
+                    <span id="clock">0:00:00 AM</span>
+                </div>
+                <div class="elapsed">
+                    <h2>Elapsed</h2>
+                    <span id="hours">00</span><span id="minutes">:00</span><span id="seconds">:00</span>
+                </div>
+            </div>
+            <div id="notes"></div>
+        </div>
 
 		<script src="../../plugin/markdown/marked.js"></script>
 		<script>

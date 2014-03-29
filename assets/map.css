@@ -1,0 +1,8 @@
+.map {
+  margin: 0;
+  overflow: hidden;
+}
+.map-img {
+  height: 151px;
+  width: 376px;
+}
